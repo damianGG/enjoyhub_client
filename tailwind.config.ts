@@ -7,6 +7,16 @@ const config: Config = {
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
+    container: {
+      center: true,
+    },
+    // container: {
+    //   center: true,
+    //   padding: {
+    //     DEFAULT: "1rem",
+    //     "2xl": "128px",
+    //   },
+    // },
     extend: {
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
@@ -15,6 +25,8 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+  ],
 }
 export default config
+
