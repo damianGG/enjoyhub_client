@@ -99,7 +99,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
                     <div className="sticky top-28">
                         <div className="listingSectionSidebar__wrap shadow-xl">
                             <div className="flex justify-between">
-                                <span className="text-3xl font-semibold">$119<span className="ml-1 text-base font-normal text-neutral-500 dark:text-neutral-400">/night</span>
+                                <span className="text-3xl font-semibold">80 zł<span className="ml-1 text-base font-normal text-neutral-500 dark:text-neutral-400">/osoba</span>
                                 </span>
                                 <div className="nc-StartRating flex items-center space-x-1 text-sm  " data-nc-id="StartRating">
                                     <div className="pb-[2px]">
