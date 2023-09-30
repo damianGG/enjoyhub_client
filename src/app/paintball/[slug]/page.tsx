@@ -1,5 +1,5 @@
 import Image from "next/image"
-
+import Map from "@/components/Map"
 export default async function Page({ params }: { params: { slug: string } }) {
 
     const id = params.slug.split('-')[0];
@@ -161,13 +161,17 @@ export default async function Page({ params }: { params: { slug: string } }) {
                         </div>
                     </div>
                 </div>
+
             </main>
         )
     }
+
+
     return (
         <div>
             {renderGallery()}
             {rederMainPage()}
+            <Map latitude={52.2297} longitude={21.0122} />
         </div>
 
 
