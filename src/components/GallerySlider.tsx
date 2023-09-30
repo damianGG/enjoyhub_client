@@ -66,7 +66,7 @@ const GallerySlider: React.FC<GallerySliderProps> = ({ photos }) => {
 
     return (
         <div className="slider-container">
-            <StyledSlider className='aspect-w-4 aspect-h-3 '  {...settings}>
+            <StyledSlider className=''  {...settings}>
                 {photos.map(photo => (
                     <div key={photo.id}>
                         <Image width={500} height={500} src={photo.url} alt={`Slide ${photo.id}`} />

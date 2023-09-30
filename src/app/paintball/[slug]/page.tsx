@@ -41,7 +41,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
                             className={`relative rounded-md sm:rounded-xl overflow-hidden ${index >= 3 ? "hidden sm:block" : ""
                                 }`}
                         >
-                            <div className="aspect-w-4 aspect-h-3 sm:aspect-w-6 sm:aspect-h-5">
+                            <div className=" sm:aspect-w-6 sm:aspect-h-5">
                                 <Image
                                     className="object-cover rounded-md sm:rounded-xl "
                                     src={item.url}
