@@ -1,10 +1,12 @@
+//import 'dotenv/config'
+import * as dotenv from 'dotenv';
 import '@/styles/index.css'
 import type { Metadata } from 'next'
 import { Poppins } from 'next/font/google'
 import Header from '../app/components/Header/Header';
 import Navigation from '../app/components/Navigation/Navigation';
 
-
+dotenv.config();
 const poppins = Poppins({
   subsets: ["latin"],
   display: "swap",

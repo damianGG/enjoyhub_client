@@ -1,5 +1,6 @@
 import Image from "next/image"
 import Map from "@/components/Map"
+import MapFromGoogle from "@/components/MapFromGoogle";
 export default async function Page({ params }: { params: { slug: string } }) {
 
     const id = params.slug.split('-')[0];
@@ -104,7 +105,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
                                 <div className="nc-StartRating flex items-center space-x-1 text-sm  " data-nc-id="StartRating">
                                     <div className="pb-[2px]">
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className="w-[18px] h-[18px] text-orange-500">
-                                            <path fill-rule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z" clip-rule="evenodd"></path>
+                                            <path fillRule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z" clipRule="evenodd"></path>
                                         </svg>
                                     </div>
                                     <span className="font-medium ">4.5</span>
@@ -115,8 +116,8 @@ export default async function Page({ params }: { params: { slug: string } }) {
                                 <div className="StayDatesRangeInput z-10 relative flex flex-1 z-[11]" data-headlessui-state="">
                                     <button className="flex-1 flex relative p-3 items-center space-x-3 focus:outline-none " type="button" aria-expanded="false" data-headlessui-state="" id="headlessui-popover-button-:rm:">
                                         <div className="text-neutral-300 dark:text-neutral-400">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" className="w-5 h-5 lg:w-7 lg:h-7">
-                                                <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5"></path>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" aria-hidden="true" className="w-5 h-5 lg:w-7 lg:h-7">
+                                                <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5"></path>
                                             </svg>
                                         </div>
                                         <div className="flex-grow text-left">
@@ -130,8 +131,8 @@ export default async function Page({ params }: { params: { slug: string } }) {
                                     <div className="flex-1 flex items-center focus:outline-none rounded-b-3xl ">
                                         <button className="relative z-10 flex-1 flex text-left items-center p-3 space-x-3 focus:outline-none" type="button" aria-expanded="false" data-headlessui-state="" id="headlessui-popover-button-:ro:">
                                             <div className="text-neutral-300 dark:text-neutral-400">
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" className="w-5 h-5 lg:w-7 lg:h-7">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zM4 19.235v-.11a6.375 6.375 0 0112.75 0v.109A12.318 12.318 0 0110.374 21c-2.331 0-4.512-.645-6.374-1.766z"></path>
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" aria-hidden="true" className="w-5 h-5 lg:w-7 lg:h-7">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" d="M19 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zM4 19.235v-.11a6.375 6.375 0 0112.75 0v.109A12.318 12.318 0 0110.374 21c-2.331 0-4.512-.645-6.374-1.766z"></path>
                                                 </svg>
                                             </div>
                                             <div className="flex-grow">
@@ -171,7 +172,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
         <div>
             {renderGallery()}
             {rederMainPage()}
-            <Map latitude={52.2297} longitude={21.0122} />
+            <  MapFromGoogle latitude={52.2297} longitude={21.0122} />
         </div>
 
 
