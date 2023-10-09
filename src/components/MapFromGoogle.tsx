@@ -2,7 +2,8 @@
 
 import React, { useMemo, useState } from 'react'
 import { GoogleMap, useJsApiLoader, Marker, InfoWindow } from '@react-google-maps/api';
-console.log(process.env.GOOGLE_API_KEY) // remove this after you've confirmed it is working
+import CustomMarker from './CustomMarker/CustomMarker';
+
 interface MapFromGoogleProps {
   latitude: number;
   longitude: number;
@@ -26,7 +27,7 @@ const center = {
 function MapFromGoogle({ latitude, longitude }: MapFromGoogleProps) {
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
-    googleMapsApiKey: ""
+    googleMapsApiKey: "AIzaSyDwherVX1feEHOKQWL5naw63sji9gLU7sY"
   })
 
 
@@ -66,16 +67,9 @@ function MapFromGoogle({ latitude, longitude }: MapFromGoogleProps) {
         gestureHandling: 'greedy'
       }}
     >
-      <Marker
-        position={center}
-        icon={{
-          url: '/paintball-gun.png',
-          scaledSize: new google.maps.Size(50, 50),
-        }}
-        onClick={() => {
-          setSelectedMarker(center);
-        }}
-      />
+      {map && (
+        <CustomMarker map={map} imageSrc='/icons/paintball-gun.svg' />
+      )}
       <></>
       {selectedMarker && (
         <InfoWindow
