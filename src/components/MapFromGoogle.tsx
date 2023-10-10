@@ -11,8 +11,8 @@ interface MapFromGoogleProps {
 
 const containerStyle = {
   width: '100%',
-  height: '600px',
-  marginTop: '3rem',
+  height: 'auto',
+  // marginTop: '3rem',
   borderRadius: "1rem",
   marginBottom: "5rem"
 };
@@ -68,7 +68,10 @@ function MapFromGoogle({ latitude, longitude }: MapFromGoogleProps) {
       }}
     >
       {map && (
-        <CustomMarker map={map} imageSrc='/icons/paintball-gun.svg' />
+        <CustomMarker lat={21.21} lng={50} map={map} imageSrc='/icons/paintball-gun.svg' />
+      )}
+      {map && (
+        <CustomMarker lat={11.21} lng={50} map={map} imageSrc='/icons/paintball-gun.svg' />
       )}
       <></>
       {selectedMarker && (

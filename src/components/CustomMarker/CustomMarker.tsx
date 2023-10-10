@@ -4,12 +4,16 @@ interface CustomMarkerProps {
     map?: google.maps.Map;
     highlight?: boolean;
     imageSrc: string;
+    lat: number;
+    lng: number;
 }
 
 export default function CustomMarker({
     map,
     highlight,
-    imageSrc
+    imageSrc,
+    lat,
+    lng
 }: CustomMarkerProps) {
 
 
@@ -18,8 +22,8 @@ export default function CustomMarker({
             {map && (
                 <OverlayView
                     position={{
-                        lat: 50.5083,
-                        lng: 21.42584
+                        lat: lat,
+                        lng: lng
                     }}
                     map={map}
                 >
@@ -39,13 +43,12 @@ export default function CustomMarker({
                             className={`bg-white rounded-full py-1.5 px-2 drop-shadow text-xs text-white ${highlight && "text-black bg-zinc-50 font-bold py-2 px-2.5"
                                 }`}
                             style={{
-                                backgroundImage: `url(${imageSrc})`, // ustawiamy obrazek jako tło przycisku
+                                backgroundImage: `url(${imageSrc})`,
                                 backgroundSize: '70%',
                                 backgroundRepeat: 'no-repeat',
-                                backgroundPosition: 'center', // ustawia obrazek na środku
+                                backgroundPosition: 'center',
                                 width: '45px',
                                 height: '45px',
-
                             }}
                         ></motion.button>
                     </motion.div>
