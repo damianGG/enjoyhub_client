@@ -68,7 +68,7 @@ function MapFromGoogle({ paintballPlaces }: MapFromGoogleProps) {
     >
 
       {paintballPlaces.map((place, index) => (
-        map && <CustomMarker key={index} lat={50.0375} lng={21.99} map={map} imageSrc='/icons/paintball-gun.svg' />
+        map && <CustomMarker key={index} lat={place.latitude} lng={place.longitude} map={map} imageSrc='/icons/paintball-gun.svg' />
       ))}
 
       <></>

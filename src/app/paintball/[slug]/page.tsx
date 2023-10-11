@@ -179,7 +179,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
             {renderGallery()}
             {rederMainPage()}
 
-            <MapFromGoogleVenue latitude={52.2297} longitude={21.0122} />
+            <MapFromGoogleVenue latitude={data.latitude} longitude={data.longitude} />
         </div>
 
 

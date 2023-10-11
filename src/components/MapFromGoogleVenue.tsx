@@ -58,8 +58,8 @@ function MapFromGoogleVenue({ latitude, longitude }: MapFromGoogleVenueProps) {
   return isLoaded ? (
     <GoogleMap
       mapContainerStyle={containerStyle}
-      center={center}
-      zoom={12}
+      center={{ lat: latitude, lng: longitude }}
+      zoom={11}
       onLoad={onLoad}
       onUnmount={onUnmount}
       options={{
@@ -68,7 +68,7 @@ function MapFromGoogleVenue({ latitude, longitude }: MapFromGoogleVenueProps) {
       }}
     >
       {map && (
-        <CustomMarker lat={21.21} lng={21.11} map={map} imageSrc='/icons/paintball-gun.svg' />
+        <CustomMarker lat={latitude} lng={longitude} map={map} imageSrc='/icons/paintball-gun.svg' />
       )}
       <></>
       {selectedMarker && (
