@@ -23,12 +23,14 @@ export default async function Page() {
             <div className="container pb-24 lg:pb-28 2xl:pl-10 xl:pr-0 xl:max-w-none">
                 <div className="relative flex min-h-screen">
                     {/* CARDSSSS */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-5 2xl:gap-x-6 gap-y-8 min-h-screen w-full xl:w-[60%] 2xl:w-[60%] max-w-[1184px] flex-shrink-0 xl:pr-8">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-5 2xl:gap-x-6 gap-y-8 min-h-screen w-full xl:w-[50%] 2xl:w-[50%] max-w-[1184px] flex-shrink-0 xl:pr-8">
                         {venueWithPhotos.map((item: {
                             city: string;
                             name: string;
                             photos: Photo[];
-                            id: string
+                            id: string;
+                            latitude: number;
+                            longitude: number;
                         }) => (
                             <PaintballCard key={item.id} data={item} />
                         ))}
@@ -41,12 +43,7 @@ export default async function Page() {
 
                     </div>  */}
 
-                    <MapFromGoogle latitude={52.2297} longitude={21.0122} />
-
-
-
-
-
+                    <MapFromGoogle paintballPlaces={venueWithPhotos} />
 
                 </div>
             </div>

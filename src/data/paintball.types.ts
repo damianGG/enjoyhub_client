@@ -5,5 +5,8 @@ export interface PaintBallType {
   name: string;
   id: string;
   photos:Photo[];
+  latitude:number;
+  longitude:number;
+
   }
   

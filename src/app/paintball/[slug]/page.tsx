@@ -1,6 +1,10 @@
 import Image from "next/image"
 import Map from "@/components/Map"
-import MapFromGoogle from "@/components/MapFromGoogle";
+// import MapFromGoogle from "@/components/MapFromGoogle";
+// import { PaintBallType } from "@/data/paintball.types";
+import MapFromGoogleVenue from "@/components/MapFromGoogleVenue";
+
+
 export default async function Page({ params }: { params: { slug: string } }) {
 
     const id = params.slug.split('-')[0];
@@ -169,14 +173,16 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
 
     return (
+
         <div className="container">
+
             {renderGallery()}
             {rederMainPage()}
-            <  MapFromGoogle latitude={52.2297} longitude={21.0122} />
+
+            <MapFromGoogleVenue latitude={52.2297} longitude={21.0122} />
         </div>
 
 
     )
 }
-
 

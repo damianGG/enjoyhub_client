@@ -3,27 +3,28 @@
 import React, { useMemo, useState } from 'react'
 import { GoogleMap, useJsApiLoader, Marker, InfoWindow } from '@react-google-maps/api';
 import CustomMarker from './CustomMarker/CustomMarker';
-import { PaintBallType } from "@/data/paintball.types"
 
-interface MapFromGoogleProps {
-  paintballPlaces: PaintBallType[];
+interface MapFromGoogleVenueProps {
+  latitude: number;
+  longitude: number;
 }
 
 const containerStyle = {
   width: '100%',
-  height: '80vh',
+  height: '500px',
+  marginTop: '2.5rem',
   borderRadius: "1rem",
   marginBottom: "5rem"
 };
 
 const center = {
-  lat: 52.106201,
-  lng: 19.494417
+  lat: 50.5083,
+  lng: 21.42584
 };
 
 
 
-function MapFromGoogle({ paintballPlaces }: MapFromGoogleProps) {
+function MapFromGoogleVenue({ latitude, longitude }: MapFromGoogleVenueProps) {
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: "AIzaSyDwherVX1feEHOKQWL5naw63sji9gLU7sY"
@@ -58,7 +59,7 @@ function MapFromGoogle({ paintballPlaces }: MapFromGoogleProps) {
     <GoogleMap
       mapContainerStyle={containerStyle}
       center={center}
-      zoom={6}
+      zoom={12}
       onLoad={onLoad}
       onUnmount={onUnmount}
       options={{
@@ -66,11 +67,9 @@ function MapFromGoogle({ paintballPlaces }: MapFromGoogleProps) {
         gestureHandling: 'greedy'
       }}
     >
-
-      {paintballPlaces.map((place, index) => (
-        map && <CustomMarker key={index} lat={50.0375} lng={21.99} map={map} imageSrc='/icons/paintball-gun.svg' />
-      ))}
-
+      {map && (
+        <CustomMarker lat={21.21} lng={21.11} map={map} imageSrc='/icons/paintball-gun.svg' />
+      )}
       <></>
       {selectedMarker && (
         <InfoWindow
@@ -92,4 +91,4 @@ function MapFromGoogle({ paintballPlaces }: MapFromGoogleProps) {
   ) : <></>
 }
 
-export default React.memo(MapFromGoogle)
+export default React.memo(MapFromGoogleVenue)
