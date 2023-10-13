@@ -35,14 +35,6 @@ export default async function Page() {
                             <PaintballCard key={item.id} data={item} />
                         ))}
                     </div>
-                    {/*MAP*/}
-                    {/* /* <div className={`xl:flex-1 xl:static xl:block`}>
-                        <div className="fixed xl:sticky top-0 xl:top-[88px] left-0 w-full h-full xl:h-[calc(100vh-88px)] rounded-md overflow-hidden">
-
-                        </div>
-
-                    </div>  */}
-
                     <MapFromGoogle paintballPlaces={venueWithPhotos} />
 
                 </div>

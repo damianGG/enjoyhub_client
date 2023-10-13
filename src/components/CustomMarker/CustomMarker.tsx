@@ -1,11 +1,19 @@
+import { PaintBallType } from "@/data/paintball.types";
 import OverlayView from "../OverlayView/OverlayView";
 import { motion } from "framer-motion";
+import CardOnMap from "../CardOnMap";
+
+
 interface CustomMarkerProps {
     map?: google.maps.Map;
     highlight?: boolean;
     imageSrc: string;
     lat: number;
     lng: number;
+    onMouseOver?: () => void;
+    onMouseOut?: () => void;
+    selectedMarker: PaintBallType | null;
+    setSelectedMarker: (value: PaintBallType | null) => void;
 }
 
 export default function CustomMarker({
@@ -13,9 +21,14 @@ export default function CustomMarker({
     highlight,
     imageSrc,
     lat,
-    lng
+    lng,
+    onMouseOver,
+    onMouseOut,
+    selectedMarker,
+    setSelectedMarker
 }: CustomMarkerProps) {
 
+    const isHovered = selectedMarker && selectedMarker.latitude === lat && selectedMarker.longitude === lng;
 
     return (
         <>
@@ -38,6 +51,8 @@ export default function CustomMarker({
                         }}
                     >
                         <motion.button
+                            onMouseEnter={onMouseOver}
+                            onMouseLeave={onMouseOut}
                             whileHover={{ scale: 1.1 }}
                             transition={{ duration: 0.1 }}
                             className={`bg-white rounded-full py-1.5 px-2 drop-shadow text-xs text-white ${highlight && "text-black bg-zinc-50 font-bold py-2 px-2.5"
@@ -51,6 +66,7 @@ export default function CustomMarker({
                                 height: '45px',
                             }}
                         ></motion.button>
+                        {isHovered && <CardOnMap data={selectedMarker} onMouseOut={() => setSelectedMarker(null)} />}
                     </motion.div>
                 </OverlayView>
             )}

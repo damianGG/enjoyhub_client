@@ -4,6 +4,7 @@ import React, { useMemo, useState } from 'react'
 import { GoogleMap, useJsApiLoader, Marker, InfoWindow } from '@react-google-maps/api';
 import CustomMarker from './CustomMarker/CustomMarker';
 import { PaintBallType } from "@/data/paintball.types"
+import CardOnMap from './CardOnMap';
 
 interface MapFromGoogleProps {
   paintballPlaces: PaintBallType[];
@@ -29,8 +30,9 @@ function MapFromGoogle({ paintballPlaces }: MapFromGoogleProps) {
     googleMapsApiKey: "AIzaSyDwherVX1feEHOKQWL5naw63sji9gLU7sY"
   })
 
-
   const [map, setMap] = React.useState<google.maps.Map | null>(null);
+  const [isMouseOver, setIsMouseOver] = useState(false);
+  const [isMouseOverCard, setIsMouseOverCard] = useState(false);
 
   const onLoad = React.useCallback(function callback(map: google.maps.Map) {
     // This is just an example of getting and using the map instance!!! don't just blindly copy!
@@ -52,8 +54,8 @@ function MapFromGoogle({ paintballPlaces }: MapFromGoogleProps) {
     },
   ], []);
 
-  const [selectedMarker, setSelectedMarker] = useState<{ lat: number; lng: number; } | null>(null);
-
+  // const [selectedMarker, setSelectedMarker] = useState<{ lat: number; lng: number; } | null>(null);
+  const [selectedMarker, setSelectedMarker] = useState<PaintBallType | null>(null);
   return isLoaded ? (
     <GoogleMap
       mapContainerStyle={containerStyle}
@@ -68,26 +70,25 @@ function MapFromGoogle({ paintballPlaces }: MapFromGoogleProps) {
     >
 
       {paintballPlaces.map((place, index) => (
-        map && <CustomMarker key={index} lat={place.latitude} lng={place.longitude} map={map} imageSrc='/icons/paintball-gun.svg' />
+        map && <CustomMarker
+          key={index}
+          lat={place.latitude}
+          lng={place.longitude}
+          map={map}
+          imageSrc='/icons/paintball-gun.svg'
+          onMouseOver={() => {
+            setIsMouseOver(true);
+            setSelectedMarker(place);
+          }}
+          onMouseOut={() => {
+            if (!isMouseOver) setSelectedMarker(null);
+          }}
+          selectedMarker={selectedMarker}
+          setSelectedMarker={setSelectedMarker}  // przekazanie funkcji setSelectedMarker
+        />
       ))}
 
       <></>
-      {selectedMarker && (
-        <InfoWindow
-          position={selectedMarker}
-          onCloseClick={() => {
-            setSelectedMarker(null);
-          }}
-        >
-          <div>
-            <h2>Marker Title</h2>
-            <p>Small description here</p>
-            <div className="image-slider">
-
-            </div>
-          </div>
-        </InfoWindow>
-      )}
     </GoogleMap>
   ) : <></>
 }
