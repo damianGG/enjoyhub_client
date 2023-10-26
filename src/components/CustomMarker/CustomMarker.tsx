@@ -2,6 +2,7 @@ import { PaintBallType } from "@/data/paintball.types";
 import OverlayView from "../OverlayView/OverlayView";
 import { motion } from "framer-motion";
 import CardOnMap from "../CardOnMap";
+import { useEffect, useRef, useState } from "react";
 
 
 interface CustomMarkerProps {
@@ -10,10 +11,7 @@ interface CustomMarkerProps {
     imageSrc: string;
     lat: number;
     lng: number;
-    onMouseOver?: () => void;
-    onMouseOut?: () => void;
-    selectedMarker: PaintBallType | null;
-    setSelectedMarker: (value: PaintBallType | null) => void;
+    dataOfVenue: PaintBallType | undefined;
 }
 
 export default function CustomMarker({
@@ -22,13 +20,43 @@ export default function CustomMarker({
     imageSrc,
     lat,
     lng,
-    onMouseOver,
-    onMouseOut,
-    selectedMarker,
-    setSelectedMarker
+    dataOfVenue,
 }: CustomMarkerProps) {
 
-    const isHovered = selectedMarker && selectedMarker.latitude === lat && selectedMarker.longitude === lng;
+    const [showCard, setShowCard] = useState(false);
+    const [mouseMoved, setMouseMoved] = useState(false);
+    const cardRef = useRef<HTMLDivElement>(null);
+
+    // Funkcja do obsługi kliknięć poza kartą
+    const handleMouseDown = () => {
+        setMouseMoved(false); // Resetujemy stan myszki przy każdym nowym naciśnięciu
+        document.addEventListener('mousemove', handleMouseMove);
+        document.addEventListener('mouseup', handleMouseUp);
+    };
+
+    const handleMouseMove = () => {
+        setMouseMoved(true); // Ustawiamy stan myszki na przesunięty, gdy wykryjemy ruch
+    };
+
+    const handleMouseUp = (event: MouseEvent) => {
+        document.removeEventListener('mousemove', handleMouseMove);
+        document.removeEventListener('mouseup', handleMouseUp);
+
+        if (!mouseMoved && cardRef.current && !cardRef.current.contains(event.target as Node)) {
+            setShowCard(false); // Zamykamy kartę tylko, gdy myszka nie została przesunięta
+        }
+    };
+
+    useEffect(() => {
+        document.addEventListener('mousedown', handleMouseDown);
+        return () => {
+            document.removeEventListener('mousedown', handleMouseDown);
+            document.removeEventListener('mousemove', handleMouseMove);
+            document.removeEventListener('mouseup', handleMouseUp);
+        };
+    }, []); // Bez zależności, aby zarejestrować nasłuchiwacze tylko raz
+
+
 
     return (
         <>
@@ -51,8 +79,7 @@ export default function CustomMarker({
                         }}
                     >
                         <motion.button
-                            onMouseEnter={onMouseOver}
-                            onMouseLeave={onMouseOut}
+                            onClick={() => setShowCard(!showCard)}
                             whileHover={{ scale: 1.1 }}
                             transition={{ duration: 0.1 }}
                             className={`bg-white rounded-full py-1.5 px-2 drop-shadow text-xs text-white ${highlight && "text-black bg-zinc-50 font-bold py-2 px-2.5"
@@ -66,7 +93,9 @@ export default function CustomMarker({
                                 height: '45px',
                             }}
                         ></motion.button>
-                        {isHovered && <CardOnMap data={selectedMarker} onMouseOut={() => setSelectedMarker(null)} />}
+                        <div ref={cardRef}>
+                            {showCard && <CardOnMap data={dataOfVenue} />}
+                        </div>
                     </motion.div>
                 </OverlayView>
             )}

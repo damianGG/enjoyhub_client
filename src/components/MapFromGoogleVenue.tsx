@@ -68,25 +68,15 @@ function MapFromGoogleVenue({ latitude, longitude }: MapFromGoogleVenueProps) {
       }}
     >
       {map && (
-        <CustomMarker lat={latitude} lng={longitude} map={map} imageSrc='/icons/paintball-gun.svg' />
+        <CustomMarker
+          lat={latitude}
+          lng={longitude}
+          map={map}
+          imageSrc='/icons/paintball-gun.svg'
+          dataOfVenue={undefined}
+        />
       )}
       <></>
-      {selectedMarker && (
-        <InfoWindow
-          position={selectedMarker}
-          onCloseClick={() => {
-            setSelectedMarker(null);
-          }}
-        >
-          <div>
-            <h2>Marker Title</h2>
-            <p>Small description here</p>
-            <div className="image-slider">
-
-            </div>
-          </div>
-        </InfoWindow>
-      )}
     </GoogleMap>
   ) : <></>
 }

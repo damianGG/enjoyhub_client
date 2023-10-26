@@ -31,8 +31,9 @@ function MapFromGoogle({ paintballPlaces }: MapFromGoogleProps) {
   })
 
   const [map, setMap] = React.useState<google.maps.Map | null>(null);
-  const [isMouseOver, setIsMouseOver] = useState(false);
-  const [isMouseOverCard, setIsMouseOverCard] = useState(false);
+  // const [isMouseOver, setIsMouseOver] = useState(false);
+  // const [isMouseOverCard, setIsMouseOverCard] = useState(false);
+  // const [isCardVisible, setCardVisible] = useState(false);
 
   const onLoad = React.useCallback(function callback(map: google.maps.Map) {
     // This is just an example of getting and using the map instance!!! don't just blindly copy!
@@ -67,6 +68,7 @@ function MapFromGoogle({ paintballPlaces }: MapFromGoogleProps) {
         styles: mapStyles,
         gestureHandling: 'greedy'
       }}
+    //  onClick={() => setCardVisible(false)}
     >
 
       {paintballPlaces.map((place, index) => (
@@ -76,18 +78,9 @@ function MapFromGoogle({ paintballPlaces }: MapFromGoogleProps) {
           lng={place.longitude}
           map={map}
           imageSrc='/icons/paintball-gun.svg'
-          onMouseOver={() => {
-            setIsMouseOver(true);
-            setSelectedMarker(place);
-          }}
-          onMouseOut={() => {
-            if (!isMouseOver) setSelectedMarker(null);
-          }}
-          selectedMarker={selectedMarker}
-          setSelectedMarker={setSelectedMarker}  // przekazanie funkcji setSelectedMarker
+          dataOfVenue={place}
         />
       ))}
-
       <></>
     </GoogleMap>
   ) : <></>

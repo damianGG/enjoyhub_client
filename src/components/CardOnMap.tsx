@@ -1,30 +1,35 @@
 import React, { FC, useState } from "react";
 import { PaintBallType } from "@/data/paintball.types";
 import StartRating from "@/components/StartRating";
-import GallerySlider from "@/components/GallerySlider"
 import Link from "next/link";
+import GallerySliderOnMap from "./GallerySliderOnMap";
 
 
-export interface PaintBallProps {
+export interface CardOnMapProps {
     className?: string;
     data?: PaintBallType;
     size?: "default" | "small";
-    onMouseOver?: () => void;
-    onMouseOut?: () => void;
+    // onMouseOver?: () => void;
+    // onMouseOut?: () => void;
+    // clickOnCard?: () => void;
 }
 
 const cardStyle = {
     width: '200px',
-    height: '400px',
+    height: '300px',
+    zindex: `99999`,
 };
 
 const sliderStyle = {
-    height: '200px',
+    height: '100px',
 }
 
-const PaintballCard: FC<PaintBallProps> = ({ data, onMouseOver, onMouseOut }) => {
+const CardOnMap: FC<CardOnMapProps> = ({ data,
+    // onMouseOver, onMouseOut, clickOnCard 
 
-    const [selectedMarker, setSelectedMarker] = useState(null);
+}) => {
+
+    //   const [selectedMarker, setSelectedMarker] = useState(null);
 
     const convertStringToURLFormat = (str: string) => {
         const map: { [key: string]: string } = {
@@ -44,7 +49,7 @@ const PaintballCard: FC<PaintBallProps> = ({ data, onMouseOver, onMouseOut }) =>
     const renderSliderGallery = () => {
         return (
             <div style={sliderStyle} className="relative w-full" >
-                <GallerySlider photos={data?.photos ?? []} />
+                <GallerySliderOnMap photos={data?.photos ?? []} />
             </div>
         );
     };
@@ -79,11 +84,15 @@ const PaintballCard: FC<PaintBallProps> = ({ data, onMouseOver, onMouseOut }) =>
     return (
         <Link href={`paintball/${id + "-" + cityForURL + "-" + nameForURL}`}
             passHref
-            onMouseOver={onMouseOver}
-            onMouseOut={() => {
-                onMouseOut && onMouseOut();
-                setSelectedMarker(null);
-            }}
+        // onMouseOver={onMouseOver}
+        // onMouseOut={() => {
+        //     onMouseOut && onMouseOut();
+        //     setSelectedMarker(null);
+        // }}
+        // onClick={() => {
+        //     clickOnCard && clickOnCard();
+
+        // }}
         >
             <div style={cardStyle}
                 className={`nc-CarCard group relative border border-neutral-200  rounded-3xl overflow-hidden bg-white`}
@@ -98,4 +107,4 @@ const PaintballCard: FC<PaintBallProps> = ({ data, onMouseOver, onMouseOut }) =>
     );
 }
 
-export default PaintballCard;
+export default CardOnMap;
