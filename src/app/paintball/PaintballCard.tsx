@@ -64,7 +64,7 @@ const PaintballCard: FC<PaintBallProps> = ({ data }) => {
     };
 
     return (
-        <Link href={`paintball/${id + "-" + cityForURL + "-" + nameForURL}`} passHref>
+        <Link className="h-fit" href={`paintball/${id + "-" + cityForURL + "-" + nameForURL}`} passHref>
             <div
                 className={`nc-CarCard group relative border border-neutral-200  rounded-3xl overflow-hidden bg-white`}
                 data-nc-id="CarCard"

@@ -84,18 +84,9 @@ const CardOnMap: FC<CardOnMapProps> = ({ data,
     return (
         <Link href={`paintball/${id + "-" + cityForURL + "-" + nameForURL}`}
             passHref
-        // onMouseOver={onMouseOver}
-        // onMouseOut={() => {
-        //     onMouseOut && onMouseOut();
-        //     setSelectedMarker(null);
-        // }}
-        // onClick={() => {
-        //     clickOnCard && clickOnCard();
-
-        // }}
         >
             <div style={cardStyle}
-                className={`nc-CarCard group relative border border-neutral-200  rounded-3xl overflow-hidden bg-white`}
+                className={`nc-CarCard group relative border border-neutral-200  rounded-2xl overflow-hidden bg-white`}
                 data-nc-id="CarCard"
             >
 

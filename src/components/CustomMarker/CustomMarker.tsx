@@ -24,37 +24,27 @@ export default function CustomMarker({
 }: CustomMarkerProps) {
 
     const [showCard, setShowCard] = useState(false);
-    const [mouseMoved, setMouseMoved] = useState(false);
+
     const cardRef = useRef<HTMLDivElement>(null);
 
     // Funkcja do obsługi kliknięć poza kartą
-    const handleMouseDown = () => {
-        setMouseMoved(false); // Resetujemy stan myszki przy każdym nowym naciśnięciu
-        document.addEventListener('mousemove', handleMouseMove);
-        document.addEventListener('mouseup', handleMouseUp);
-    };
-
-    const handleMouseMove = () => {
-        setMouseMoved(true); // Ustawiamy stan myszki na przesunięty, gdy wykryjemy ruch
-    };
-
-    const handleMouseUp = (event: MouseEvent) => {
-        document.removeEventListener('mousemove', handleMouseMove);
-        document.removeEventListener('mouseup', handleMouseUp);
-
-        if (!mouseMoved && cardRef.current && !cardRef.current.contains(event.target as Node)) {
-            setShowCard(false); // Zamykamy kartę tylko, gdy myszka nie została przesunięta
+    const handleClickOutside = (event: MouseEvent) => {
+        if (cardRef.current && !cardRef.current.contains(event.target as Node)) {
+            setShowCard(false);
         }
     };
 
     useEffect(() => {
-        document.addEventListener('mousedown', handleMouseDown);
+        // Dodawanie nasłuchiwacza, gdy karta jest wyświetlana
+        if (showCard) {
+            document.addEventListener("mousedown", handleClickOutside);
+        }
+
+        // Usuwanie nasłuchiwacza, gdy karta jest ukrywana
         return () => {
-            document.removeEventListener('mousedown', handleMouseDown);
-            document.removeEventListener('mousemove', handleMouseMove);
-            document.removeEventListener('mouseup', handleMouseUp);
+            document.removeEventListener("mousedown", handleClickOutside);
         };
-    }, []); // Bez zależności, aby zarejestrować nasłuchiwacze tylko raz
+    }, [showCard]); // Dodanie showCard jako zależność useEffect
 
 
 
