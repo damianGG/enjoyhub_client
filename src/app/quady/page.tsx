@@ -27,7 +27,7 @@ export default async function Page() {
                     photos: Photo[];
                     id: string
                 }) => (
-                    <PaintballCard key={item.id} data={item} />
+                    <PaintballCard key={item.id} />
                 ))}
             </div>
         );

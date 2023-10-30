@@ -29,7 +29,7 @@ function Navigation() {
 
                 <div className="flex overflow-x-scroll hide-scrollbar  p-2 items-center gap-10">
 
-                    <Link href="/paintball" shallow={true}>
+                    <Link href="/paintball" shallow={true} >
                         <div className="flex flex-col items-center">
                             <Image
                                 src={paintballGun}
