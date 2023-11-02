@@ -21,8 +21,6 @@ type Inputs = {
 const RegistrationForm = (): React.ReactElement | null => {
 
     const { register, handleSubmit, formState: { errors } } = useForm<Inputs>();
-    const router = useRouter();
-    const [error, setError] = useState(null);
     const [registrationData, setRegistrationData] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
     const [isRegistered, setIsRegistered] = useState(false);

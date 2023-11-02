@@ -66,10 +66,6 @@ function Navigation() {
                         </div>
                     </Link>
                 </div>
-
-                {/* <button className="p-2">
-                    <ChevronRightIcon className="h-6 w-6 text-gray-500" />
-                </button> */}
             </div>
         </div>
     );
