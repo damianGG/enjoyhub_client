@@ -3,6 +3,7 @@ import PaintballCard from "./PaintballCard"
 import { PaintBallType } from "@/data/paintball.types"
 import { Photo } from "@/components/GallerySlider"
 import MapFromGoogle from "@/components/MapFromGoogle"
+import GlobalLoadingIndicator from "@/components/GlobalLoadingIndicator"
 async function getData() {
     const res = await fetch('http://localhost:3000/venue/category/paintball')
     // The return value is *not* serialized

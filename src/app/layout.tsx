@@ -3,9 +3,9 @@ import * as dotenv from 'dotenv';
 import '@/styles/index.css'
 import type { Metadata } from 'next'
 import { Poppins } from 'next/font/google'
-import Header from '../app/components/Header/Header';
-import Navigation from '../app/components/Navigation/Navigation';
-
+import Header from '../components/Header/Header';
+import Navigation from '../components/Navigation/Navigation';
+import Providers from './providers'
 
 dotenv.config();
 const poppins = Poppins({
@@ -30,7 +30,8 @@ export default function RootLayout({
         <Header />
         <div className=''>
           <Navigation />
-          {children}
+
+          <Providers>{children}</Providers>
 
         </div>
       </body>

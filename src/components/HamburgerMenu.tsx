@@ -34,6 +34,7 @@ function HamburgerMenu() {
             {isOpen && (
                 <div className="absolute z-10 right-0 mt-2 w-48 py-2 bg-white border shadow-xl top-10 rounded-2xl opacity-100 translate-y-0">
                     <a href="/login" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">Zaloguj się</a>
+                    <a href="/signup" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">Zarejestruj się</a>
                     <a href="/about" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">O nas</a>
                     <a href="/add-location" className="block px-4 py-2 text-gray-800 hover:bg-gray-200">Dodaj miejsce rozrywki</a>
                 </div>

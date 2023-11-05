@@ -6,14 +6,11 @@ import twitterSvg from "@/images/Twitter.svg";
 import googleSvg from "@/images/Google.svg";
 import Image from "next/image";
 import Link from "next/link";
-import { useForm, SubmitHandler } from "react-hook-form";
-import { useRouter } from 'next/navigation';
-import RegistrationForm from "@/app/signup/RegistrationForm";
+import LoginUserForm from "./LoginUserForm";
 
-export interface PageSignUpProps { }
+export interface PageLoginProps { }
 
 type Inputs = {
-    name: string;
     email: string;
     password: string;
 };
@@ -36,14 +33,14 @@ const loginSocials = [
     },
 ];
 
-const PageSignUp: FC<PageSignUpProps> = ({ }) => {
+const PageSignUp: FC<PageLoginProps> = ({ }) => {
 
     return (
 
         <div className={`nc-PageSignUp  `}>
             <div className="container mb-24 lg:mb-32">
                 <h2 className="my-20 flex items-center text-3xl leading-[115%] md:text-5xl md:leading-[115%] font-semibold   justify-center">
-                    Dołącz do nas!
+                    Zaloguj się!
                 </h2>
                 <div className="max-w-md mx-auto space-y-6 ">
                     <div className="grid gap-3">
@@ -71,11 +68,11 @@ const PageSignUp: FC<PageSignUpProps> = ({ }) => {
                         </span>
                         <div className="absolute left-0 w-full top-1/2 transform -translate-y-1/2 border border-neutral-100 "></div>
                     </div>
-                    <RegistrationForm />
+                    <LoginUserForm />
                     <span className="block text-center text-neutral-700 ">
-                        Masz już konto? {` `}
-                        <Link href="/login" className="font-semibold underline">
-                            Zaloguj się
+                        Nie masz konta {` `}
+                        <Link href="/signup" className="font-semibold underline">
+                            Zarejestruj się
                         </Link>
                     </span>
                 </div>
