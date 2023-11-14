@@ -7,7 +7,9 @@ import googleSvg from "@/images/Google.svg";
 import Image from "next/image";
 import Link from "next/link";
 import LoginUserForm from "./LoginUserForm";
-
+import GoogleLoginButton from "./GoogleLoginButton";
+import SignInGoogleButton from "./SignInGoogleButton";
+import { signIn, signOut, useSession } from "next-auth/react";
 export interface PageLoginProps { }
 
 type Inputs = {
@@ -17,50 +19,34 @@ type Inputs = {
 
 const loginSocials = [
     {
-        name: "Zaloguj za pomocą Facebook",
-        href: "#",
-        icon: facebookSvg,
-    },
-    {
-        name: "Zaloguj za pomocą Twitter",
-        href: "#",
-        icon: twitterSvg,
-    },
-    {
-        name: "Zaloguj za pomocą Google",
+        name: "Zaloguj się za pomocą Google",
         href: "#",
         icon: googleSvg,
+    },
+    {
+        name: "Zaloguj się za pomocą Facebooka",
+        href: "#",
+        icon: facebookSvg,
     },
 ];
 
 const PageSignUp: FC<PageLoginProps> = ({ }) => {
+
 
     return (
 
         <div className={`nc-PageSignUp  `}>
             <div className="container mb-24 lg:mb-32">
                 <h2 className="my-20 flex items-center text-3xl leading-[115%] md:text-5xl md:leading-[115%] font-semibold   justify-center">
-                    Zaloguj się!
+                    zaloguj się
                 </h2>
-                <div className="max-w-md mx-auto space-y-6 ">
+                <div className="max-w-md mx-auto space-y-6">
                     <div className="grid gap-3">
-                        {loginSocials.map((item, index) => (
-                            <a
-                                key={index}
-                                href={item.href}
-                                className="nc-will-change-transform flex w-full rounded-lg bg-primary-50 placeholder:px-4 py-3 transform transition-transform sm:px-6 hover:translate-y-[-2px]"
-                            >
-                                <Image
-                                    className="flex-shrink-0"
-                                    src={item.icon}
-                                    alt={item.name}
-                                />
-                                <h3 className="flex-grow text-center text-sm font-medium   sm:text-sm">
-                                    {item.name}
-                                </h3>
-                            </a>
-                        ))}
+                        <SignInGoogleButton />
                     </div>
+
+
+
                     {/* OR */}
                     <div className="relative text-center">
                         <span className="relative z-10 inline-block px-4 font-medium text-sm bg-white dark:text-neutral-400 ">

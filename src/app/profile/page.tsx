@@ -5,31 +5,28 @@ import useAuth from '@/hooks/useAuth';
 import Link from 'next/link';
 import Loader from '@/components/Loader';
 import LogoutButton from '@/components/LogoutButton';
-
+import { signIn, signOut, useSession } from "next-auth/react";
 const ProfilePage = () => {
-    const { data, error } = useAuth();
+    // const { data, error } = useAuth();
 
-    if (error) {
+    const { data: session } = useSession();
+
+    if (session && session.user) {
         return (
-            <div>
-                Nie jesteś zalogowany, musisz się zalogować.
-                <Link href="/login">Zaloguj się</Link>
+            <div className="flex gap-4 ml-auto">
+                <p className="text-sky-600">{session.user.name}</p>
+                <button onClick={() => signOut()} className="text-red-600">
+                    Sign Out
+                </button>
             </div>
         );
     }
+    return (
+        <button onClick={() => signIn()} className="text-green-600 ml-auto">
+            Sign In
+        </button>
+    );
 
-    if (data) {
-        return (
-            <div>
-                {/* Treść profilu */}
-                Witaj {data.email}
-                <LogoutButton />
-            </div>
-        );
-    }
-
-
-    return <Loader />;
 };
 
 export default ProfilePage;

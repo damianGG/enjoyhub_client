@@ -5,7 +5,7 @@ import { Photo } from "@/components/GallerySlider"
 import MapFromGoogle from "@/components/MapFromGoogle"
 import GlobalLoadingIndicator from "@/components/GlobalLoadingIndicator"
 async function getData() {
-    const res = await fetch('http://localhost:3000/venue/category/paintball')
+    const res = await fetch('http://localhost:3001/venue/category/paintball')
     // The return value is *not* serialized
     // You can return Date, Map, Set, etc.
     if (!res.ok) {

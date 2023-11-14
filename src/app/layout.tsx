@@ -6,6 +6,7 @@ import { Poppins } from 'next/font/google'
 import Header from '../components/Header/Header';
 import Navigation from '../components/Navigation/Navigation';
 import Providers from './providers'
+import QueryWrapper from '@/components/wrappers/query-wrapper';
 
 dotenv.config();
 const poppins = Poppins({
@@ -27,13 +28,15 @@ export default function RootLayout({
 
     <html lang="en" className={poppins.className}>
       <body className="bg-white text-base text-neutral-900">
-        <Header />
-        <div className=''>
-          <Navigation />
 
-          <Providers>{children}</Providers>
+        <Providers>
+          <div className=''>
+            <Header />
+            <Navigation />
+            {children}
+          </div>
+        </Providers>
 
-        </div>
       </body>
     </html>
 
