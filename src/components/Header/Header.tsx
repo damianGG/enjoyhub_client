@@ -2,6 +2,7 @@ import Image from 'next/image';
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 import ButtonCTA from '@/components/ButtonCTA'
 import HamburgerMenu from '@/components/HamburgerMenu';
+import HamburgerMenuDropdown from '../HamburgerMenuDropdown';
 
 function Header() {
     return (
@@ -31,7 +32,7 @@ function Header() {
             {/* Prawa strona */}
             <div className="flex space-x-4 items-center text-gray-500">
                 <ButtonCTA />
-                <HamburgerMenu />
+                <HamburgerMenuDropdown />
             </div>
         </header>
     );

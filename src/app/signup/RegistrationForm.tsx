@@ -21,12 +21,10 @@ type Inputs = {
 const RegistrationForm = (): React.ReactElement | null => {
 
     const { register, handleSubmit, formState: { errors } } = useForm<Inputs>();
-    const router = useRouter();
-    const [error, setError] = useState(null);
     const [registrationData, setRegistrationData] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
     const [isRegistered, setIsRegistered] = useState(false);
-
+    const [emailExists, setEmailExists] = useState<string | null>(null);;
 
     const registerUser = async (registrationData: Inputs) => {
         const response = await fetch('http://localhost:3000/users', {
@@ -45,6 +43,24 @@ const RegistrationForm = (): React.ReactElement | null => {
 
         return response.json();
     };
+
+    const checkEmailExists = async (email: any) => {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            return;  // Zwróć nic, jeśli e-mail jest nieprawidłowy
+        }
+        const response = await fetch(`http://localhost:3000/users/${email}`, {
+            method: 'POST',
+        });
+
+        if (response.ok) {
+            setEmailExists('Taki email już istnieje, możesz się zalogować.');
+        }
+        else {
+            setEmailExists('');
+        }
+    };
+
 
     const onSubmit: SubmitHandler<Inputs> = async (data, event) => {
         if (event) {
@@ -85,8 +101,9 @@ const RegistrationForm = (): React.ReactElement | null => {
                         <span className="flex justify-between items-center ">
                             Adres email
                         </span>
-                        <input className="block w-full border-neutral-200 focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 bg-white   dark:focus:ring-opacity-25  rounded-2xl text-sm font-normal h-11 px-4 py-3 mt-1" {...register("email", { required: true })} placeholder="Email" />
+                        <input className="block w-full border-neutral-200 focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 bg-white dark:focus:ring-opacity-25 rounded-2xl text-sm font-normal h-11 px-4 py-3 mt-1" {...register("email", { required: true })} onBlur={(e) => checkEmailExists(e.target.value)} placeholder="Email" />
                         {errors.email && <span>To pole jest wymagane</span>}
+                        {emailExists && <span className="text-red-500">{emailExists}</span>}
                     </label>
                     <label className="block">
                         <span className="flex justify-between items-center  ">

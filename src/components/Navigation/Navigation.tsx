@@ -27,7 +27,7 @@ function Navigation() {
                     <ChevronLeftIcon className="h-6 w-6 text-gray-500" />
                 </button> */}
 
-                <div className="flex overflow-x-scroll hide-scrollbar  p-2 items-center gap-8">
+                <div className="flex overflow-x-scroll hide-scrollbar  p-2 items-center gap-10">
 
                     <Link href="/paintball" shallow={true} >
                         <div className="flex flex-col items-center">

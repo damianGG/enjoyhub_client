@@ -82,19 +82,20 @@ const CardOnMap: FC<CardOnMapProps> = ({ data,
     };
 
     return (
-        <Link href={`paintball/${id + "-" + cityForURL + "-" + nameForURL}`}
-            passHref
+        <div style={cardStyle}
+            className={`nc-CarCard group relative border border-neutral-200  rounded-2xl overflow-hidden bg-white`}
+            data-nc-id="CarCard"
         >
-            <div style={cardStyle}
-                className={`nc-CarCard group relative border border-neutral-200  rounded-2xl overflow-hidden bg-white`}
-                data-nc-id="CarCard"
+
+            {renderSliderGallery()}
+
+            <Link href={`paintball/${id + "-" + cityForURL + "-" + nameForURL}`}
+                passHref
             >
-
-                {renderSliderGallery()}
                 {renderContent()}
+            </Link>
 
-            </div>
-        </Link>
+        </div>
     );
 }
 
