@@ -12,6 +12,7 @@ export default function HamburgerMenuDropdown() {
 
 
     const { data: session } = useSession();
+    console.log(session);
     return (
         <div className="relative flex items-center justify-center p-2 border-2 rounded-full w-11 h-11">
             <Popover className={`relative flex `}>
