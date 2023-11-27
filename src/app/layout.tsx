@@ -5,7 +5,7 @@ import type { Metadata } from 'next'
 import { Poppins } from 'next/font/google'
 import Header from '../components/Header/Header';
 import Navigation from '../components/Navigation/Navigation';
-import Providers from './providers'
+import Providers from './Providers'
 import QueryWrapper from '@/components/wrappers/query-wrapper';
 
 dotenv.config();
@@ -19,11 +19,11 @@ export const metadata: Metadata = {
   title: 'EnjoyHub',
   description: 'Centrum z najlepszymi miejscami rozrywki i aktywności',
 }
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+
+interface Props {
+  children: React.ReactNode;
+}
+export default function RootLayout(props: Props) {
   return (
 
     <html lang="en" className={poppins.className}>
@@ -33,7 +33,7 @@ export default function RootLayout({
           <div className=''>
             <Header />
             <Navigation />
-            {children}
+            {props.children}
           </div>
         </Providers>
 

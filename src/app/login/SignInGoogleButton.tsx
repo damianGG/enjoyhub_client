@@ -11,7 +11,7 @@ const SigninButton = () => {
         return (
             <div className="flex gap-4 ml-auto">
                 <h4 className="display-block">Jesteś zalogowany jako:</h4>
-                <p>{session.expires}</p>
+                <p>{session.user.name}</p>
                 <button onClick={() => signOut()} className="text-red-600">
                     Wyloguj mnie
                 </button>

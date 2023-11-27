@@ -3,6 +3,7 @@ import Map from "@/components/Map"
 // import MapFromGoogle from "@/components/MapFromGoogle";
 // import { PaintBallType } from "@/data/paintball.types";
 import MapFromGoogleVenue from "@/components/MapFromGoogleVenue";
+import { env } from "process";
 
 
 export default async function Page({ params }: { params: { slug: string } }) {
@@ -11,8 +12,8 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
     // Make both fetch calls simultaneously
     const [res, resPhotos] = await Promise.all([
-        fetch(`http://localhost:3000/venue/${id}`),
-        fetch(`http://localhost:3000/venue/${id}/photos`)
+        fetch(`http://localhost:3001/venue/${id}`),
+        fetch(`http://localhost:3001/venue/${id}/photos`)
     ]);
 
     if (!res.ok) {

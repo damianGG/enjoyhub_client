@@ -1,11 +1,20 @@
+
 import NextAuth from "next-auth/next";
 import GoogleProvider from "next-auth/providers/google";
 import { signIn, signOut, useSession } from "next-auth/react";
 import CredentialsProvider from "next-auth/providers/credentials"
-import { RequestInternal } from "next-auth";
-const handler = NextAuth({
-  debug: process.env.NODE_ENV === "development",
+import { NextAuthOptions, RequestInternal } from "next-auth";
+import { JWT } from "next-auth/jwt";
+import { env } from "process";
 
+
+
+
+
+
+export const authOptions:NextAuthOptions= {
+  //debug: process.env.NODE_ENV === "development",
+    secret: process.env.NEXTAUTH_SECRET,
     providers: [
       GoogleProvider({
         clientId: "148645235903-t0u6mdnnv9f02c7o9c1nmkkbnhgd7drn.apps.googleusercontent.com",
@@ -27,22 +36,26 @@ const handler = NextAuth({
             try {
               const res = await fetch("http://localhost:3001/auth/login", {
                 method: "POST",
-                headers: {
-                  "Content-Type": "application/json",
-                },
                 body: JSON.stringify({
                   email,
                   password,
                 }),
+                headers: {
+                  "Content-Type": "application/json",
+                },
               });
         
               if (res.status === 401) {
+                console.log("blad jest tutaj 1")
                 console.log(res.statusText);
                 return null;
               }
         
-              const user = await req.body.json();
-              return user;
+              const userFromServer = await res.json();
+             // console.log("1")
+            //  tutaj gpt
+          
+              return userFromServer;
             } catch (error) {
               console.error('An error occurred during authorization:', error);
               return null;
@@ -51,7 +64,21 @@ const handler = NextAuth({
         },
       })
     ],
-    // callbacks: {
+    callbacks: {
+      async jwt({ token, user, account, ...rest }) {
+        if (user?.access_token) {
+          token.accessToken = user.access_token; // Zakładając, że access_token jest częścią obiektu user
+        }
+        return token;
+      },
+ 
+      async session({ session, token }) {
+        if (typeof token.accessToken === 'string') {
+          session.accessToken = token.accessToken; // Dodaj accessToken do sesji
+        }
+        console.log(session)
+        return session;
+      },
     //   async signIn ({user, account, profile})  {
     //     const response = await fetch("http://localhost:3001/users/register/via-provider", {
     //       method: "POST",
@@ -91,7 +118,8 @@ const handler = NextAuth({
     //     // console.log(this.session)
     //     return true;
     //   },
-    // }
-  });
+    }
+  };
 
+const handler = NextAuth(authOptions)
 export { handler as GET, handler as POST }

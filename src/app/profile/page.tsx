@@ -17,24 +17,10 @@ import AddVenueCard from '@/components/addVenue';
 
 
 
-async function getData() {
-    const res = await fetch('http://localhost:3001/users/{id}')
-    // The return value is *not* serialized
-    // You can return Date, Map, Set, etc.
-    if (!res.ok) {
-        // This will activate the closest `error.js` Error Boundary
-        throw new Error('Failed to fetch data')
-    }
 
-    return res.json()
-}
 
 const ProfilePage = () => {
-    // const { data, error } = useAuth();
-
-    const { data: session } = useSession();
     const renderSidebar = () => {
-
 
         return (
 
@@ -45,8 +31,9 @@ const ProfilePage = () => {
                 <div className="flex flex-col md:flex-row">
                     <div className="flex-grow mt-10 md:mt-0 max-w-3xl space-y-6">
                         <div>
+                            {/* <input type="text" /> */}
                             <Label>Name</Label>
-                            <Input className="mt-1.5" defaultValue="Eden Tuan" />
+                            <Input className="mt-1.5" defaultValue="" />
                         </div>
                         {/* ---- */}
                         <div>
@@ -87,15 +74,30 @@ const ProfilePage = () => {
                             <Label>About you</Label>
                             <Textarea className="mt-1.5" defaultValue="..." />
                         </div>
-                        <div className="pt-2">
-                            {/* <Button>Update info</Button> */}
-                        </div>
                     </div>
                 </div>
             </div>
         )
     }
     const renderSection1 = () => {
+
+        // const user = await getData();
+        // const res = await fetch(`http://localhost:3001/users/${session?.user?.email}`, {
+        //     method: "POST",
+        //     headers: {
+        //         "Content-Type": "application/json",
+        //         "Authorization": `Bearer ${session?.accessToken}`
+        //     },
+        // });
+
+        // if (res.status === 401) {
+        //     console.log(res.statusText);
+        //     return null;
+        // }
+
+        // const userFromServer = await res.json();
+        // console.log(userFromServer)
+
         return (
             <div className="listingSection__wrap">
                 <div>
@@ -105,7 +107,7 @@ const ProfilePage = () => {
                     </span>
                 </div>
                 <div className="w-14 border-b border-neutral-200 dark:border-neutral-700"></div>
-
+                {/* {userFromServer.name} */}
                 <div>
                     <Tab.Group>
                         <Tab.List className="flex space-x-1 overflow-x-auto">
@@ -120,7 +122,11 @@ const ProfilePage = () => {
                 </div>
             </div>
         );
+
+
     };
+
+
     return (
         <div className={`nc-AuthorPage `}>
             <main className="container mt-12 mb-24 lg:mb-32 flex flex-col lg:flex-row">
@@ -131,11 +137,10 @@ const ProfilePage = () => {
                 </div>
                 <div className="w-full lg:w-3/5 xl:w-2/3 space-y-8 lg:space-y-10 lg:pl-10 flex-shrink-0">
                     {renderSection1()}
-                    {/* {renderSection2()}  */}
+
                 </div>
             </main>
         </div>
-
     );
 
 };
