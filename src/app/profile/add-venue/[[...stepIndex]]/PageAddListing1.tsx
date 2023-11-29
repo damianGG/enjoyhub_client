@@ -1,18 +1,27 @@
 "use client"
 
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import Input from "@/shared/Input";
 import Select from "@/shared/Select";
 import FormItem from "../FormItem";
 import { getSession } from "next-auth/react";
+import { useFormState } from "./FormContext";
+import Image from "next/image";
+import paintballGun from "@/app/components/Navigation/icons/paintball-gun.png";
+import quady from '@/app/components/Navigation/icons/quad.png'
+import gokarty from '@/app/components/Navigation/icons/karting.png'
+import aim from '@/app/components/Navigation/icons/aim.png'
 
 export interface PageAddListing1Props { }
-
+type TFormValues = {
+};
 const PageAddListing1: FC<PageAddListing1Props> = () => {
+  const { onHandleNext, setFormData, formData } = useFormState();
+
   const { control, register, handleSubmit, watch, formState: { errors } } = useForm();
-  //const { data: session } = useSession();
-  const onSubmit = async (data: any) => {
+  //  const { nextStep, updateFormData } = useMultiStepForm({ totalSteps: 2 });
+  const onSubmittoSendForm = async (data: any) => {
     const session = await getSession();
     console.log(session?.accessToken);
     if (!session || !session.accessToken) {
@@ -42,47 +51,56 @@ const PageAddListing1: FC<PageAddListing1Props> = () => {
     }
   };
 
-  console.log(watch("example"))
+  const onHandleFormSubmit = (data: TFormValues) => {
+    setFormData((prev: any) => ({ ...prev, ...data }));
+    onHandleNext();
+  };
+  const [selectedId, setSelectedId] = useState<number | null>(null);
+
+  const options = [
+    { id: 1, image: quady, label: 'Quady' },
+    { id: 3, image: paintballGun, label: 'Paintball' },
+    { id: 2, image: gokarty, label: 'Gokarty' },
+    { id: 4, image: aim, label: 'Aim' },
+  ]
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <h2 className="text-2xl font-semibold">Choosing listing categories</h2>
-      <div className="w-14 border-b border-neutral-200 dark:border-neutral-700"></div>
+    <form onSubmit={handleSubmit(onHandleFormSubmit)}>
+      <Controller
+        name="categoryId"
+        control={control}
+        render={({ field }) => (
+          <div className="flex gap-8 flex-wrap justify-between">
+            {options.map((option) => (
+              <label key={option.id}
+                style={{
+                  cursor: 'pointer',
+                  margin: '10px',
+                  padding: '25px',
+                  borderRadius: '50%',
+                  background: selectedId === option.id ? 'lightgrey' : 'transparent',
+                }}
+                onClick={() => {
+                  field.onChange(option.id);
+                  setSelectedId(option.id);
+                }}
 
-      <div className="space-y-8">
-        <FormItem
-          label="Wybierz typ rozrywki"
-          desc="Hotel: Professional hospitality businesses that usually have a unique style or theme defining their brand and decor"
-        >
-
-
-          <Select>
-            <option value="1">Paintball</option>
-            <option value="2">Gokarty</option>
-            <option value="3">Strzelnica</option>
-          </Select>
-
-
-        </FormItem>
-
-        <FormItem
-          label="Nazwa obiektu"
-          desc="Podaj nazwę swojego obiektu "
-        >
-          <Input placeholder="Nazwa obiektu" {...register("name", { required: true })} />
-          {errors.name && <span>To pole jest wymagane</span>}
-        </FormItem>
-
-        <FormItem
-          label="Miejscowość"
-          desc="Miejscowość "
-        >
-          <Input placeholder="Miejscowość" {...register("city", { required: true })} />
-          {errors.city && <span>To pole jest wymagane</span>}
-        </FormItem>
-
-        <input type="submit" />
-      </div>
+              >
+                <input
+                  type="radio"
+                  value={option.id}
+                  checked={field.value === option}
+                  onChange={() => field.onChange(option.id)}
+                  style={{ display: 'none' }}
+                />
+                <Image src={option.image} alt={`Option ${option.label}`} style={{ cursor: 'pointer', margin: '10px' }} width={150} height={150} />
+                <div className="font-medium text-center mt-2">{option.label}</div>
+              </label>
+            ))}
+          </div>
+        )}
+      />
+      <button type="submit">Submit</button>
     </form>
 
   );

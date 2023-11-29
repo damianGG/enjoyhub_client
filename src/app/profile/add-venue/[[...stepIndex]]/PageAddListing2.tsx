@@ -4,81 +4,69 @@ import { MapPinIcon } from "@heroicons/react/24/solid";
 //import LocationMarker from "@/components/AnyReactComponent/LocationMarker";
 import Label from "@/components/Label";
 import GoogleMapReact from "google-map-react";
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import Button from "@/shared/Button";
 import Input from "@/shared/Input";
 import Select from "@/shared/Select";
 import FormItem from "../FormItem";
+import { useFormState } from "./FormContext";
+import { Controller, useForm } from "react-hook-form";
+import LocationPicker from "./LocationPicker";
+
+
+
 
 export interface PageAddListing2Props { }
-
+type TFormValues = {
+};
 const PageAddListing2: FC<PageAddListing2Props> = () => {
-  return (
-    <>
-      <h2 className="text-2xl font-semibold">Your place location</h2>
-      <div className="w-14 border-b border-neutral-200 dark:border-neutral-700"></div>
-      {/* FORM */}
-      <div className="space-y-8">
-        {/* <Button>
-          <MapPinIcon className="w-5 h-5 text-neutral-500 dark:text-neutral-400" />
-          <span className="ml-3">Use current location</span>
-        </Button> */}
-        {/* ITEM */}
-        <FormItem label="Country/Region">
-          <Select>
-            <option value="Viet Nam">Viet Nam</option>
-            <option value="Thailand">Thailand</option>
-            <option value="France">France</option>
-            <option value="Singapore">Singapore</option>
-            <option value="Jappan">Jappan</option>
-            <option value="Korea">Korea</option>
-            <option value="...">...</option>
-          </Select>
-        </FormItem>
-        <FormItem label="Street">
-          <Input placeholder="..." />
-        </FormItem>
-        <FormItem label="Room number (optional)">
-          <Input />
-        </FormItem>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-5">
-          <FormItem label="City">
-            <Input />
-          </FormItem>
-          <FormItem label="State">
-            <Input />
-          </FormItem>
-          <FormItem label="Postal code">
-            <Input />
-          </FormItem>
-        </div>
-        <div>
-          <Label>Detailed address</Label>
-          <span className="block mt-1 text-sm text-neutral-500 dark:text-neutral-400">
-            1110 Pennsylvania Avenue NW, Washington, DC 20230
-          </span>
-          <div className="mt-4">
-            <div className="aspect-w-5 aspect-h-5 sm:aspect-h-3">
-              <div className="rounded-xl overflow-hidden">
-                <GoogleMapReact
-                  bootstrapURLKeys={{
-                    key: "AIzaSyAGVJfZMAKYfZ71nzL_v5i3LjTTWnCYwTY",
-                  }}
-                  yesIWantToUseGoogleMapApiInternals
-                  defaultZoom={15}
-                  defaultCenter={{
-                    lat: 55.9607277,
-                    lng: 36.2172614,
-                  }}
-                >
-                  {/* <LocationMarker lat={55.9607277} lng={36.2172614} /> */}
-                </GoogleMapReact>
-              </div>
-            </div>
-          </div>
-        </div>
+  const [isCreated, setCreated] = useState(false);
+  const { setFormData, formData, onHandleBack } = useFormState();
+  const { register, handleSubmit } = useForm<TFormValues>({
+    defaultValues: formData,
+  });
+
+  const onHandleFormSubmit = (data: TFormValues) => {
+    setFormData((prev: any) => ({ ...prev, ...data }));
+    setCreated(true);
+  };
+
+  const handleLocationSelect = (latlng: { lat: any; lng: any; }) => {
+    setFormData((prevState: any) => ({ ...prevState, latitude: latlng.lat, longitude: latlng.lng }));
+  };
+  const { control } = useForm();
+
+  return isCreated ? (
+    <div>
+      <p>Account created successfully</p>
+      <pre>{JSON.stringify(formData)}</pre>
+    </div>) : (
+    <form className="space-y-6" onSubmit={handleSubmit(onHandleFormSubmit)}>
+      <Controller
+        name="latitude"
+        control={control}
+        render={({ field }) => <input type="hidden" {...field} />}
+      />
+      <Controller
+        name="longitude"
+        control={control}
+        render={({ field }) => <input type="hidden" {...field} />}
+      />
+      <LocationPicker onLocationSelect={handleLocationSelect} />
+      <div className="flex gap-4 justify-end">
+        <button
+          type="button"
+          onClick={onHandleBack}
+          className="h-11 px-6 inline-block bg-blue-600 font-semibold text-black rounded-md"
+        >
+          Back
+        </button>
+        <button className="h-11 px-6 inline-block bg-blue-600 font-semibold text-black rounded-md">
+          Create
+        </button>
       </div>
-    </>
+
+    </form>
   );
 };
 

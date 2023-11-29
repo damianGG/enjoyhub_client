@@ -1,8 +1,10 @@
+"use client"
+
 import React from "react";
 import { FC } from "react";
 import ButtonPrimary from "@/components/Button";
 import ButtonSecondary from "@/components/Button";
-
+import { FormProvider } from "./FormContext";
 
 export interface CommonLayoutProps {
   children: React.ReactNode;
@@ -33,7 +35,9 @@ const CommonLayout: FC<CommonLayoutProps> = ({ children, params }) => {
         </div>
 
         {/* --------------------- */}
-        <div className="listingSection__wrap ">{children}</div>
+        <div className="listingSection__wrap ">
+          <FormProvider>{children}</FormProvider>
+        </div>
 
         {/* --------------------- */}
         <div className="flex justify-end space-x-5">

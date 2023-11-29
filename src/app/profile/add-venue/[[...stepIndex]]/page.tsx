@@ -1,30 +1,28 @@
-import React from "react";
+"use client"
+
+import React, { useState } from "react";
 import PageAddListing1 from "./PageAddListing1";
 import PageAddListing2 from "./PageAddListing2";
+import { useFormState } from "./FormContext";
 
 
-const Page = ({
-  params,
-  searchParams,
-}: {
-  params: { stepIndex: string };
-  searchParams?: { [key: string]: string | string[] | undefined };
-}) => {
-  let ContentComponent = PageAddListing1;
-  switch (Number(params.stepIndex)) {
+function ActiveStepFormComponent() {
+  const { step } = useFormState();
+  switch (step) {
     case 1:
-      ContentComponent = PageAddListing1;
-      break;
+      return <PageAddListing1 />;
     case 2:
-      ContentComponent = PageAddListing2;
-      break;
-   
+      return <PageAddListing2 />;
     default:
-      ContentComponent = PageAddListing1;
-      break;
+      return null;
   }
+}
 
-  return <ContentComponent />;
+export default function Page() {
+  return (
+    <ActiveStepFormComponent />
+  )
 };
 
-export default Page;
+
+
