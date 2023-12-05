@@ -18,44 +18,43 @@ type TFormValues = {
 };
 const PageAddListing1: FC<PageAddListing1Props> = () => {
   const { onHandleNext, setFormData, formData } = useFormState();
-
   const { control, register, handleSubmit, watch, formState: { errors } } = useForm();
-  //  const { nextStep, updateFormData } = useMultiStepForm({ totalSteps: 2 });
-  const onSubmittoSendForm = async (data: any) => {
-    const session = await getSession();
-    console.log(session?.accessToken);
-    if (!session || !session.accessToken) {
-      console.error('Brak tokenu sesji');
-      return;
-    }
-    try {
-      const response = await fetch('http://localhost:3001/venue', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${session.accessToken}` // Zamień na rzeczywisty token
-        },
-        body: JSON.stringify(data)
-      });
-
-      if (!response.ok) {
-        throw new Error('Network response was not ok ' + response.statusText);
-      }
-
-      const responseData = await response.json();
-      console.log(responseData);
-      console.log("dodano")
-    } catch (error) {
-      console.error('There was a problem with the fetch operation:', error);
-      // Tutaj możesz obsłużyć błędy, np. wyświetlić komunikat
-    }
-  };
-
-  const onHandleFormSubmit = (data: TFormValues) => {
-    setFormData((prev: any) => ({ ...prev, ...data }));
-    onHandleNext();
-  };
   const [selectedId, setSelectedId] = useState<number | null>(null);
+  // const onSubmittoSendForm = async (data: any) => {
+  //   const session = await getSession();
+  //   console.log(session?.accessToken);
+  //   if (!session || !session.accessToken) {
+  //     console.error('Brak tokenu sesji');
+  //     return;
+  //   }
+  //   try {
+  //     const response = await fetch('http://localhost:3001/venue', {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //         'Authorization': `Bearer ${session.accessToken}` // Zamień na rzeczywisty token
+  //       },
+  //       body: JSON.stringify(data)
+  //     });
+
+  //     if (!response.ok) {
+  //       throw new Error('Network response was not ok ' + response.statusText);
+  //     }
+
+  //     const responseData = await response.json();
+  //     console.log(responseData);
+  //     console.log("dodano")
+  //   } catch (error) {
+  //     console.error('There was a problem with the fetch operation:', error);
+  //     // Tutaj możesz obsłużyć błędy, np. wyświetlić komunikat
+  //   }
+  // };
+
+  // const onHandleFormSubmit = (data: TFormValues) => {
+  //   setFormData((prev: any) => ({ ...prev, ...data }));
+  //   onHandleNext();
+  // };
+
 
   const options = [
     { id: 1, image: quady, label: 'Quady' },
@@ -63,6 +62,44 @@ const PageAddListing1: FC<PageAddListing1Props> = () => {
     { id: 2, image: gokarty, label: 'Gokarty' },
     { id: 4, image: aim, label: 'Aim' },
   ]
+
+  const onSubmittoSendForm = async (data: any) => {
+    const session = await getSession();
+    if (session && session.accessToken) {
+      try {
+        const response = await fetch('http://localhost:3001/venue', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${session.accessToken}`
+          },
+          body: JSON.stringify(data)
+        });
+
+        if (!response.ok) {
+          throw new Error(`Błąd sieci: ${response.statusText}`);
+        }
+
+        const responseData = await response.json();
+        console.log("Venue ID zapisane:", responseData.id);
+
+        // Zapisz ID venue i przejdź do następnego kroku
+        setFormData((prev: any) => ({ ...prev, venueId: responseData.id }));
+        onHandleNext();
+      } catch (error) {
+        console.error('Wystąpił problem:', error);
+      }
+    } else {
+      console.log('Brak sesji lub tokenu');
+    }
+  };
+
+
+  const onHandleFormSubmit = (data: TFormValues) => {
+    onSubmittoSendForm(data);
+    // setFormData((prev: any) => ({ ...prev, ...data }));
+    // onHandleNext();
+  };
 
   return (
     <form onSubmit={handleSubmit(onHandleFormSubmit)}>

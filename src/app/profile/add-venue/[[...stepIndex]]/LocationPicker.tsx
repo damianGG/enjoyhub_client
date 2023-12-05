@@ -36,7 +36,7 @@ const LocationPicker: React.FC<LocationPickerProps> = ({ onLocationSelect }) => 
 
     return (
         <LoadScript
-            googleMapsApiKey=""
+            googleMapsApiKey="AIzaSyDwherVX1feEHOKQWL5naw63sji9gLU7sY"
         >
             <GoogleMap
                 mapContainerStyle={containerStyle}

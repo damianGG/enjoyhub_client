@@ -21,14 +21,15 @@ type TFormValues = {
 };
 const PageAddListing2: FC<PageAddListing2Props> = () => {
   const [isCreated, setCreated] = useState(false);
-  const { setFormData, formData, onHandleBack } = useFormState();
+  const { setFormData, formData, onHandleBack,onHandleNext } = useFormState();
   const { register, handleSubmit } = useForm<TFormValues>({
     defaultValues: formData,
   });
 
   const onHandleFormSubmit = (data: TFormValues) => {
     setFormData((prev: any) => ({ ...prev, ...data }));
-    setCreated(true);
+    onHandleNext();
+    //setCreated(true);
   };
 
   const handleLocationSelect = (latlng: { lat: any; lng: any; }) => {
@@ -65,7 +66,7 @@ const PageAddListing2: FC<PageAddListing2Props> = () => {
           Create
         </button>
       </div>
-
+      <button type="submit">Submit</button>
     </form>
   );
 };
