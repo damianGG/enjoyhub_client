@@ -12,6 +12,7 @@ interface Image {
 const PageAddListing3: FC<PageAddListing7Props> = () => {
   const [loading, setLoading] = useState(false);
   const [uploadedImages, setUploadedImages] = useState<Image[]>([]);
+  const [isImageUploaded, setIsImageUploaded] = useState(false);
   const { formData } = useFormState();
 
   const fetchImages = async () => {
@@ -28,10 +29,6 @@ const PageAddListing3: FC<PageAddListing7Props> = () => {
       setLoading(false);
     }
   };
-
-  useEffect(() => {
-    fetchImages();
-  }, [formData.venueId]);
 
   const handleFileUpload = async (event: { target: { files: any } }) => {
     const files = event.target.files;
@@ -57,7 +54,10 @@ const PageAddListing3: FC<PageAddListing7Props> = () => {
         body: formDataToSend,
       });
       await response.json();
-      fetchImages();  // Ponownie pobierz zdjęcia po udanym uploadzie
+      // Opóźnienie przed ponownym pobraniem obrazów
+      setTimeout(() => {
+        setIsImageUploaded(true); // Ustaw stan na true po udanym uploadzie
+      }, 1000); //
     } catch (error) {
       console.error('Error during file upload:', error);
     } finally {
@@ -65,10 +65,18 @@ const PageAddListing3: FC<PageAddListing7Props> = () => {
     }
   };
 
+  useEffect(() => {
+    if (isImageUploaded) {
+      fetchImages();
+      setIsImageUploaded(false); // Resetuj stan
+    }
+  }, [isImageUploaded]);
   const handleDelete = async (publicId: string) => {
     try {
       setLoading(true);
-      await fetch(`http://localhost:3001/images/delete/${publicId}`, { method: 'DELETE' });
+      const encodedPublicId = encodeURIComponent(publicId);
+      const url = `http://localhost:3001/images?publicId=${encodedPublicId}`;
+      await fetch(url, { method: 'DELETE' });
       fetchImages(); // Ponownie pobierz aktualną listę zdjęć
     } catch (error) {
       console.error('Error deleting image:', error);
