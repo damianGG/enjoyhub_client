@@ -43,6 +43,9 @@ const PageSignUp: FC<PageLoginProps> = ({ }) => {
                 <div className="max-w-md mx-auto space-y-6">
                     <div className="grid gap-3">
                         <SignInGoogleButton />
+                        <button onClick={() => signIn('google')} className="...">
+                            Za pomoca google
+                        </button>
                     </div>
 
 
