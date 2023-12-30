@@ -52,8 +52,8 @@ export const authOptions:NextAuthOptions= {
               }
         
               const userFromServer = await res.json();
-             // console.log("1")
-            //  tutaj gpt
+              console.log("1")
+              console.log(userFromServer)
           
               return userFromServer;
             } catch (error) {
@@ -68,17 +68,24 @@ export const authOptions:NextAuthOptions= {
       async jwt({ token, user, account, ...rest }) {
         if (user?.access_token) {
           token.accessToken = user.access_token; // Zakładając, że access_token jest częścią obiektu user
+          token.userId = user.userId
         }
         return token;
       },
  
       async session({ session, token }) {
+        // Upewnij się, że session.user jest zdefiniowane
+        session.user = session.user || {};
+      
         if (typeof token.accessToken === 'string') {
           session.accessToken = token.accessToken; // Dodaj accessToken do sesji
         }
-        console.log(session)
+        if (token?.userId) {
+          session.user.userId = token.userId; // Dodaj userId do sesji
+        }
+        console.log(session);
         return session;
-      },
+      }
     //   async signIn ({user, account, profile})  {
     //     const response = await fetch("http://localhost:3001/users/register/via-provider", {
     //       method: "POST",
