@@ -1,24 +1,13 @@
 
 "use client"
 import React, { useState, useEffect } from 'react';
-import useAuth from '@/hooks/useAuth';
-import Link from 'next/link';
-import Loader from '@/components/Loader';
-import LogoutButton from '@/components/LogoutButton';
+
 import { getSession, signIn, signOut, useSession } from "next-auth/react";
-import Label from '@/components/Label';
-import Input from '@/shared/Input';
-import Select from '@/shared/Select';
-import Button from '@/shared/Button';
-import Textarea from '@/shared/Textarea';
-import { Tab } from '@headlessui/react';
-import { redirect } from 'next/navigation';
-import AddVenueCard from '@/components/addVenue';
 import { Photo } from '@/components/GallerySlider';
-import PaintballCard from '../paintball/PaintballCard';
 import UserProfileForm from './UserProfileForm';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
+import VenueCard from './VenueCard';
 
 type VenueData = {
     city: string;
@@ -152,7 +141,7 @@ function ProfilePage() {
                             latitude: number;
                             longitude: number;
                         }) => (
-                            <PaintballCard key={item.id} data={item} />
+                            <VenueCard key={item.id} data={item} />
                         ))}
                     </div>
                 </div>

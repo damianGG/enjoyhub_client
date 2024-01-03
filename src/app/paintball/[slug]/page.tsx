@@ -3,6 +3,7 @@ import Map from "@/components/Map"
 // import MapFromGoogle from "@/components/MapFromGoogle";
 // import { PaintBallType } from "@/data/paintball.types";
 import MapFromGoogleVenue from "@/components/MapFromGoogleVenue";
+import MainVenueGallery from "./MainVenueGallery";
 import { env } from "process";
 
 
@@ -26,6 +27,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
     // Parse the JSON for both responses
     const [data, PHOTOS] = await Promise.all([res.json(), resPhotos.json()]);
     const firstPhoto = PHOTOS[0];
+    console.log(PHOTOS)
 
     const renderGallery = () => {
         return (
@@ -176,7 +178,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
     return (
 
         <div className="container">
-
+            {/* <MainVenueGallery PHOTOS={PHOTOS} /> */}
             {renderGallery()}
             {rederMainPage()}
 
