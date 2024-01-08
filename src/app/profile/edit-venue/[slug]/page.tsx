@@ -17,6 +17,17 @@ interface Image {
     url: string;
 }
 
+
+type UserData = {
+    name: string;
+    city: string;
+    country: string;
+    postalCode: string;
+    street: string;
+    latitude: number;
+    longitude: number;
+}
+
 export default function Page({
     params,
     searchParams,
@@ -26,7 +37,7 @@ export default function Page({
 }) {
     const [activeTab, setActiveTab] = useState<number>(0);
     const venueID = params.slug;
-    const [data, setData] = useState(null);
+    const [data, setData] = useState<UserData | null>(null);
     const [PHOTOS, setPhotos] = useState<Image[]>([]);
 
 
@@ -59,6 +70,57 @@ export default function Page({
         fetchData();
     };
 
+    const updateData = async (updatedUserData: UserData) => {
+        try {
+            const response = await fetch(`http://localhost:3001/venue/${venueID}`, {
+                method: 'POST', // lub 'POST', w zależności od API
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(updatedUserData),
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to update data');
+            }
+
+            // Opcjonalnie: Ponowne pobieranie danych, aby odświeżyć stan
+            fetchData();
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+    const onDataChange = (newData: UserData, resetForm: () => void) => {
+        updateData(newData).then(() => {
+            resetForm();
+        });
+    };
+
+    const onLocationChange = async (updatedUserData: UserData) => {
+        try {
+            const response = await fetch(`http://localhost:3001/venue/${venueID}`, {
+                method: 'POST', // lub 'POST', w zależności od API
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(updatedUserData),
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to update data');
+            }
+
+            // Opcjonalnie: Ponowne pobieranie danych, aby odświeżyć stan
+            fetchData();
+        } catch (error) {
+            console.error(error);
+        }
+
+        // You can also call an API or update state as needed
+    };
+
+
     // Parse the JSON for both responses
     console.log(data)
     console.log(PHOTOS)
@@ -77,9 +139,9 @@ export default function Page({
             </Tabs>
             <div className="space-y-11 mt-6">
                 <div className="listingSection__wrap ">
-                    {/* {activeTab === 0 && <DescriptionManager  />} */}
+                    {activeTab === 0 && <DescriptionManager userData={data} onSubmit={onDataChange} />}
                     {activeTab === 1 && <ImageManager photos={PHOTOS} onPhotosChange={onPhotosChange} />}
-                    {activeTab === 2 && <PositionManager />}
+                    {activeTab === 2 && <PositionManager onLocationChange={onLocationChange} />}
 
                 </div>
             </div>
