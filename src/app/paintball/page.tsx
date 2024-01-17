@@ -4,6 +4,9 @@ import { PaintBallType } from "@/data/paintball.types"
 import { Photo } from "@/components/GallerySlider"
 import MapFromGoogle from "@/components/MapFromGoogle"
 import GlobalLoadingIndicator from "@/components/GlobalLoadingIndicator"
+
+
+
 async function getData() {
     const res = await fetch('http://localhost:3001/venue/category/paintball')
     // The return value is *not* serialized
@@ -23,7 +26,7 @@ export default async function Page() {
             <div className="container pb-24 lg:pb-28 2xl:pl-10 xl:pr-0 xl:max-w-none">
                 <div className="relative flex min-h-screen">
                     {/* CARDSSSS */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-5 2xl:gap-x-6 gap-y-8 min-h-screen w-full xl:w-[50%] 2xl:w-[50%] max-w-[1184px] flex-shrink-0 xl:pr-8">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-5 2xl:gap-x-6 gap-y-8 min-h-screen w-full xl:w-[50%] 2xl:w-[50%] max-w-[977px] flex-shrink-0 xl:pr-8">
                         {venueWithPhotos.map((item: {
                             city: string;
                             name: string;
@@ -35,7 +38,8 @@ export default async function Page() {
                             <PaintballCard key={item.id} data={item} />
                         ))}
                     </div>
-                    <MapFromGoogle paintballPlaces={venueWithPhotos} />
+                    <MapFromGoogle className="static top-40" paintballPlaces={venueWithPhotos} />
+
 
                 </div>
             </div>

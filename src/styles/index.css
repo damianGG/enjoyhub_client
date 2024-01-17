@@ -2171,6 +2171,9 @@ select {
 .top-28 {
   top: 7rem;
 }
+.top-20 {
+  top: 5rem;
+}
 
 .top-3 {
   top: 0.75rem;
@@ -2996,6 +2999,10 @@ select {
 
 .max-w-\[1184px\] {
   max-width: 1184px;
+}
+
+.max-w-\[977px\] {
+  max-width: 977px;
 }
 
 .max-w-\[140px\] {
@@ -4451,6 +4458,10 @@ select {
 
 .pr-4 {
   padding-right: 1rem;
+}
+
+.pr-5 {
+  padding-right: 1.25rem;
 }
 
 .pr-6 {

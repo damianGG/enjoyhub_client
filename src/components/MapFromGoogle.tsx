@@ -4,16 +4,19 @@ import React, { useMemo, useState } from 'react'
 import { GoogleMap, useJsApiLoader, Marker, InfoWindow } from '@react-google-maps/api';
 import CustomMarker from './CustomMarker/CustomMarker';
 import { PaintBallType } from "@/data/paintball.types"
-
+import { CSSProperties } from 'react';
 interface MapFromGoogleProps {
   paintballPlaces: PaintBallType[];
+  className?: string;
 }
 
-const containerStyle = {
+const containerStyle: CSSProperties = {
   width: '100%',
-  height: '80vh',
+  height: '78vh',
   borderRadius: "1rem",
-  marginBottom: "5rem"
+  marginBottom: "5rem",
+  top: "12rem",
+  position: 'sticky',
 };
 
 const center = {

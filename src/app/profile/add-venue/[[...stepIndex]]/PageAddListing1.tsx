@@ -8,10 +8,10 @@ import FormItem from "../FormItem";
 import { getSession } from "next-auth/react";
 import { useFormState } from "./FormContext";
 import Image from "next/image";
-import paintballGun from "@/app/components/Navigation/icons/paintball-gun.png";
-import quady from '@/app/components/Navigation/icons/quad.png'
-import gokarty from '@/app/components/Navigation/icons/karting.png'
-import aim from '@/app/components/Navigation/icons/aim.png'
+import paintballGun from "@/images/icons/paintball-gun.png";
+import quady from '@/images/icons/quad.png'
+import gokarty from '@/images/icons/karting.png'
+import aim from '@/images/icons/aim.png'
 
 export interface PageAddListing1Props { }
 type TFormValues = {

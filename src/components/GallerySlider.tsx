@@ -27,7 +27,7 @@ const GallerySlider: React.FC<GallerySliderProps> = ({ photos }) => {
         <div ref={sliderRef} className="keen-slider">
             {photos.map(photo => (
                 <div key={photo.id} className="keen-slider__slide">
-                    <Image width={500} height={500} src={photo.url} alt={`Slide ${photo.id}`} />
+                    <Image width={297} height={297} src={photo.url} alt={`Slide ${photo.id}`} />
                 </div>
             ))}
         </div>
