@@ -8,7 +8,7 @@ import { useSwipeable } from "react-swipeable";
 import { variants } from "@/utils/animationVariants";
 import Link from "next/link";
 import { Route } from "@/data/routers.types";
-import { Photo } from "./GallerySlider";
+import { Photo } from "./GallerySlider/GallerySlider";
 
 export interface GallerySliderProps {
     className?: string;

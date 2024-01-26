@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 
 import { getSession, signIn, signOut, useSession } from "next-auth/react";
-import { Photo } from '@/components/GallerySlider';
+import { Photo } from '@/components/GallerySlider/GallerySlider';
 import UserProfileForm from './UserProfileForm';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';

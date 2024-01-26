@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { PaintBallType } from "@/data/paintball.types";
 import StartRating from "@/components/StartRating";
-import GallerySlider from "@/components/GallerySlider"
+import GallerySlider from "@/components/GallerySlider/GallerySlider"
 import Link from "next/link";
 
 

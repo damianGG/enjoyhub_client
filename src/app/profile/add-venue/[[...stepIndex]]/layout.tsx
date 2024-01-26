@@ -40,12 +40,12 @@ const CommonLayout: FC<CommonLayoutProps> = ({ children, params }) => {
         </div>
 
         {/* --------------------- */}
-        <div className="flex justify-end space-x-5">
+        {/* <div className="flex justify-end space-x-5">
           <ButtonPrimary href={backtHref}>Go back</ButtonPrimary>
           <ButtonSecondary href={nextHref}>
             {nextBtnText || "Continue"}
           </ButtonSecondary>
-        </div>
+        </div> */}
       </div>
     </div>
   );

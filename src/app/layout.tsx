@@ -32,7 +32,7 @@ export default function RootLayout(props: Props) {
         <Providers>
           <div className=''>
             <Header />
-            <Navigation />
+
             {props.children}
           </div>
         </Providers>

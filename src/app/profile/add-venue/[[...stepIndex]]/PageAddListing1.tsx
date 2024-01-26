@@ -12,6 +12,7 @@ import paintballGun from "@/images/icons/paintball-gun.png";
 import quady from '@/images/icons/quad.png'
 import gokarty from '@/images/icons/karting.png'
 import aim from '@/images/icons/aim.png'
+import offroad from '@/images/icons/off-road.png'
 
 export interface PageAddListing1Props { }
 type TFormValues = {
@@ -20,47 +21,13 @@ const PageAddListing1: FC<PageAddListing1Props> = () => {
   const { onHandleNext, setFormData, formData } = useFormState();
   const { control, register, handleSubmit, watch, formState: { errors } } = useForm();
   const [selectedId, setSelectedId] = useState<number | null>(null);
-  // const onSubmittoSendForm = async (data: any) => {
-  //   const session = await getSession();
-  //   console.log(session?.accessToken);
-  //   if (!session || !session.accessToken) {
-  //     console.error('Brak tokenu sesji');
-  //     return;
-  //   }
-  //   try {
-  //     const response = await fetch('http://localhost:3001/venue', {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //         'Authorization': `Bearer ${session.accessToken}` // Zamień na rzeczywisty token
-  //       },
-  //       body: JSON.stringify(data)
-  //     });
-
-  //     if (!response.ok) {
-  //       throw new Error('Network response was not ok ' + response.statusText);
-  //     }
-
-  //     const responseData = await response.json();
-  //     console.log(responseData);
-  //     console.log("dodano")
-  //   } catch (error) {
-  //     console.error('There was a problem with the fetch operation:', error);
-  //     // Tutaj możesz obsłużyć błędy, np. wyświetlić komunikat
-  //   }
-  // };
-
-  // const onHandleFormSubmit = (data: TFormValues) => {
-  //   setFormData((prev: any) => ({ ...prev, ...data }));
-  //   onHandleNext();
-  // };
-
 
   const options = [
     { id: 1, image: quady, label: 'Quady' },
     { id: 3, image: paintballGun, label: 'Paintball' },
     { id: 2, image: gokarty, label: 'Gokarty' },
     { id: 4, image: aim, label: 'Aim' },
+    { id: 5, image: offroad, label: 'Off-road' },
   ]
 
   const onSubmittoSendForm = async (data: any) => {

@@ -8,7 +8,7 @@ import Link from 'next/link';
 
 function Header() {
     return (
-        <header className="flex justify-between sticky top-0 z-50 bg-white shadow-md p-5 md:px-10">
+        <header className="flex justify-between sticky top-0 z-5 bg-white p-5 md:px-10">
 
             {/* Lewa strona */}
             {/* Logo */}

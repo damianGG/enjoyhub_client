@@ -1,3 +1,4 @@
+
 import { PaintBallType } from "@/data/paintball.types";
 import OverlayView from "../OverlayView/OverlayView";
 import { motion } from "framer-motion";
@@ -75,7 +76,8 @@ export default function CustomMarker({
                             className={`bg-white rounded-full py-1.5 px-2 drop-shadow text-xs text-white ${highlight && "text-black bg-zinc-50 font-bold py-2 px-2.5"
                                 }`}
                             style={{
-                                backgroundImage: `url(${imageSrc})`,
+                                //backgroundImage: `url(${imageSrc})`,
+                                backgroundImage: `url(/icons/${imageSrc}.svg)`,
                                 backgroundSize: '70%',
                                 backgroundRepeat: 'no-repeat',
                                 backgroundPosition: 'center',

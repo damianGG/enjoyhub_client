@@ -7,9 +7,9 @@ import MainVenueGallery from "./MainVenueGallery";
 import { env } from "process";
 
 
-export default async function Page({ params }: { params: { slug: string } }) {
+export default async function Page({ params }: { params: { venueName: string } }) {
 
-    const id = params.slug.split('-')[0];
+    const id = params.venueName.split('-')[0];
 
     // Make both fetch calls simultaneously
     const [res, resPhotos] = await Promise.all([
@@ -36,12 +36,11 @@ export default async function Page({ params }: { params: { slug: string } }) {
                     <div
                         className="col-span-2 row-span-3 sm:row-span-2 relative rounded-md sm:rounded-xl overflow-hidden cursor-pointer"
                     >
-
-                        <Image
+                        {/* <Image
                             width={900} height={500} src={firstPhoto.url} alt={`Slide ${firstPhoto.id}`}
                             className="object-cover rounded-md sm:rounded-xl"
                             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 50vw"
-                        />
+                        /> */}
                         <div className="absolute inset-0 bg-neutral-900 bg-opacity-20 opacity-0 hover:opacity-100 transition-opacity"></div>
                     </div>
                     {PHOTOS.filter((_: string, i: number) => i >= 1 && i < 5).map((item: { url: string }, index: number) => (
@@ -68,7 +67,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
                     ))}
 
                     <button
-                        className="absolute hidden md:flex md:items-center md:justify-center left-3 bottom-3 px-4 py-2 rounded-xl bg-neutral-100 text-neutral-500 hover:bg-neutral-200 z-10"
+                        className="absolute hidden md:flex md:items-center md:justify-center left-3 bottom-3 px-4 py-2 rounded-xl bg-neutral-100 text-neutral-500 hover:bg-neutral-200"
                     >
                         {/* <Squares2X2Icon className="w-5 h-5" /> */}
                         <span className="ml-2 text-neutral-800 text-sm font-medium">
@@ -82,7 +81,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
     const rederMainPage = () => {
         return (
-            <main className=" relative z-10 mt-11 flex flex-col lg:flex-row ">
+            <main className=" relative  mt-11 flex flex-col lg:flex-row ">
                 <div className="w-full lg:w-3/5 xl:w-2/3 space-y-8 lg:space-y-10 lg:pr-10">
                     <div className="listingSection__wrap">
                         <h2 className="text-2xl font-semibold">Co będziesz robił?</h2>

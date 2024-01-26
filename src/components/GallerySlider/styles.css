@@ -33,7 +33,7 @@
   background: white;
 }
 
-.arrow-left {
+.arrow {
   width: 30px;
   height: 30px;
   position: absolute;
@@ -46,30 +46,17 @@
   padding: 6px;
   border-radius: 50%;
   padding: 9px;
+}
+
+.arrow--left {
   left: 5px;
 }
-.arrow-right {
-  width: 30px;
-  height: 30px;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  -webkit-transform: translateY(-50%);
-  fill: black;
-  cursor: pointer;
-  background-color: white;
-  padding: 6px;
-  border-radius: 50%;
-  padding: 9px;
-  left: 5px;
+
+.arrow--right {
   left: auto;
   right: 5px;
 }
 
 .arrow--disabled {
   fill: rgba(255, 255, 255, 0.5);
-}
-.keen-slider__slide {
-  position: relative;
-  height: 190px; /* Stała wysokość */
 }

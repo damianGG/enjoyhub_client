@@ -11,12 +11,9 @@ interface MapFromGoogleProps {
 }
 
 const containerStyle: CSSProperties = {
-  width: '100%',
+  width: '46vw',
   height: '78vh',
   borderRadius: "1rem",
-  marginBottom: "5rem",
-  top: "12rem",
-  position: 'sticky',
 };
 
 const center = {
@@ -69,7 +66,8 @@ function MapFromGoogle({ paintballPlaces }: MapFromGoogleProps) {
           lat={place.latitude}
           lng={place.longitude}
           map={map}
-          imageSrc='/icons/paintball-gun.svg'
+          //imageSrc='/icons/paintball-gun.svg'
+          imageSrc={place.category.name}
           dataOfVenue={place}
         />
       ))}

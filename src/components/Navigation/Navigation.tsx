@@ -21,7 +21,7 @@ function Navigation() {
     const router = useRouter();
 
     return (
-        <div className="  flex justify-center sticky top-20 z-50 bg-white shadow-md  md:px-10 mb-5">
+        <div className="  flex justify-center sticky top-20 z-2 bg-white bottom-shadow  md:px-10 mb-8">
             <div className="flex items-center justify-center">
                 {/* <button className="p-2">
                     <ChevronLeftIcon className="h-6 w-6 text-gray-500" />

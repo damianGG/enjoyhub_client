@@ -5,7 +5,8 @@ import Image from 'next/image';
 import { useKeenSlider } from 'keen-slider/react';
 import 'keen-slider/keen-slider.min.css';
 import { Transition } from "@headlessui/react";
-import styled from 'styled-components';
+import "./styles.css"
+
 
 export type Photo = {
     id: number;
@@ -67,7 +68,14 @@ const GallerySlider: React.FC<GallerySliderProps> = ({ photos }) => {
             <div ref={sliderRef} className="keen-slider">
                 {photos.map(photo => (
                     <div key={photo.id} className="keen-slider__slide">
-                        <Image width={300} height={100} src={photo.url} alt={`Slide ${photo.id}`} />
+                        <Image
+                            // width={297} 
+                            // height={190} 
+                            src={photo.url}
+                            alt={`Slide ${photo.id}`}
+                            layout="fill"
+                            objectFit="cover"
+                        />
                     </div>
                 ))}
                 {loaded && instanceRef.current && (

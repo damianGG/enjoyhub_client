@@ -1,0 +1,27 @@
+Do zrobienia:
+
+! slider na kartach, poprawić tak aby działał prawidłowo 
+- aby nie zmieniałą się wysokość slidera przy pierwszym rednerowaniu 
+- slider powinien miec zawsze stałą wysokość nie może się rozszerzać jeśli zdjecie jest wyższe 
+- karta na mapie, poprawić wyświetlanie danych 
+    - ustawic go na środku karty
+
+- wyświetlenie wszsytkich obiektó zbiorczo w przypadku link 
+
+Formularz dodawania obiektu 
+ 1. Nawigacja do formularza lub progress bar ostatni przycisk dodaj obiekt 
+ 2. Male ikonki jakaś karta z elementem do wyboru, sprawdzic na airbnb 
+ 3. Token wygasa przez co nie można przejść dalej? sciagnac zabezpiecznie z session uzywac globalnie 
+ 4. zapisanie danych do bazy (nie zapisuje lokalizacji )
+
+
+Logowanie za pomoca googla, facebooka 
+- strona do logowania za pomoca google fb itd powinna byc na naszej stronie przynajmniej powinno tak wygladac 
+
+LOOOOOGOOOO
+
+-SEKCJA O NAS 
+-Fotter 
+
+
+Infinite scroll 
