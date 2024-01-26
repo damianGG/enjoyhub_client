@@ -2,7 +2,7 @@ import React, { FC, useState } from "react";
 import { PaintBallType } from "@/data/paintball.types";
 import StartRating from "@/components/StartRating";
 import Link from "next/link";
-import GallerySliderOnMap from "./GallerySliderOnMap";
+import GallerySliderOnMap from "@/components/GallerySliderOnMap/GallerySliderOnMap";
 
 
 export interface CardOnMapProps {
@@ -15,14 +15,11 @@ export interface CardOnMapProps {
 }
 
 const cardStyle = {
-    width: '300px',
-    height: '400px',
+    width: '290px',
+    height: 'auto',
     zindex: `99999`,
 };
 
-const sliderStyle = {
-    height: '100px',
-}
 
 const CardOnMap: FC<CardOnMapProps> = ({ data,
     // onMouseOver, onMouseOut, clickOnCard 
@@ -48,7 +45,8 @@ const CardOnMap: FC<CardOnMapProps> = ({ data,
 
     const renderSliderGallery = () => {
         return (
-            <div style={sliderStyle} className="relative w-full" >
+            <div
+                className="relative w-full" >
                 <GallerySliderOnMap photos={data?.photos ?? []} />
             </div>
         );
@@ -82,7 +80,6 @@ const CardOnMap: FC<CardOnMapProps> = ({ data,
                     </div>
                 </div>
                 {/* <StartRating reviewCount={4} point={4} /> */}
-
             </div>
         );
     };
@@ -92,11 +89,11 @@ const CardOnMap: FC<CardOnMapProps> = ({ data,
             data-nc-id="CarCard"
         >
 
-            {renderSliderGallery()}
 
             <Link href={`paintball/${id + "-" + cityForURL + "-" + nameForURL}`}
                 passHref
             >
+                {renderSliderGallery()}
                 {renderContent()}
             </Link>
 

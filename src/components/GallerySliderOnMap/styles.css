@@ -1,0 +1,63 @@
+.navigation-wrapper {
+  position: relative;
+}
+
+.dots {
+  padding: 10px 0;
+  position: absolute;
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  text-align: center;
+  bottom: 0;
+}
+
+.dot {
+  border: none;
+  width: 7px;
+  height: 7px;
+  background: #c5c5c5;
+  border-radius: 50%;
+  margin: 0 3px;
+  padding: 2px;
+  cursor: pointer;
+}
+
+.dot:focus {
+  outline: none;
+}
+
+.dot.active {
+  background: white;
+}
+
+.arrow {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  fill: black;
+  cursor: pointer;
+  background-color: white;
+  padding: 6px;
+  border-radius: 50%;
+  padding: 9px;
+  border: 1px solid #c5c5c5;
+}
+
+.arrow--left {
+  left: 5px;
+}
+
+.arrow--right {
+  left: auto;
+  right: 5px;
+}
+
+.arrow--disabled {
+  fill: rgba(255, 255, 255, 0.5);
+}

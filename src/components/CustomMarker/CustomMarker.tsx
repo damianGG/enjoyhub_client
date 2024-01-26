@@ -85,7 +85,15 @@ export default function CustomMarker({
                                 height: '45px',
                             }}
                         ></motion.button>
-                        <div ref={cardRef}>
+                        <div ref={cardRef}
+                            style={{
+                                position: 'absolute',
+                                left: '50%',
+                                top: '50%',
+                                transform: 'translate(-50%, 24px)'
+                            }}
+
+                        >
                             {showCard && <CardOnMap data={dataOfVenue} />}
                         </div>
                     </motion.div>

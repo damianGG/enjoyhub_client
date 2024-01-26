@@ -5,7 +5,8 @@ import Image from 'next/image';
 import { useKeenSlider } from 'keen-slider/react';
 import 'keen-slider/keen-slider.min.css';
 import { Transition } from "@headlessui/react";
-import styled from 'styled-components';
+import "./styles.css"
+
 
 export type Photo = {
     id: number;
@@ -25,8 +26,10 @@ function Arrow(props: {
     disabled: boolean
     left?: boolean
     onClick: (e: any) => void
+    shouldDisplay: boolean;
 }) {
     const disabled = props.disabled ? " arrow--disabled" : ""
+    if (!props.shouldDisplay) return null;
     return (
         <svg
             onClick={props.onClick}
@@ -49,6 +52,9 @@ const GallerySlider: React.FC<GallerySliderProps> = ({ photos }) => {
     const [currentSlide, setCurrentSlide] = useState(0);
     const [loaded, setLoaded] = useState(false);
     const [isHovering, setIsHovering] = useState(false);
+    const isAtStart = currentSlide === 0;
+    const isAtEnd = currentSlide === photos.length - 1;
+
     const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>({
         initial: 0,
         slideChanged(slider) {
@@ -64,10 +70,16 @@ const GallerySlider: React.FC<GallerySliderProps> = ({ photos }) => {
             onMouseEnter={() => setIsHovering(true)}
             onMouseLeave={() => setIsHovering(false)}
         >
-            <div ref={sliderRef} className="keen-slider">
+            <div ref={sliderRef} className="keen-slider h-48">
                 {photos.map(photo => (
                     <div key={photo.id} className="keen-slider__slide">
-                        <Image width={300} height={100} src={photo.url} alt={`Slide ${photo.id}`} />
+                        <Image
+                            width={297}
+                            height={190}
+                            src={photo.url}
+                            alt={`Slide ${photo.id}`}
+
+                        />
                     </div>
                 ))}
                 {loaded && instanceRef.current && (
@@ -86,13 +98,17 @@ const GallerySlider: React.FC<GallerySliderProps> = ({ photos }) => {
                                 e.preventDefault();
                                 e.stopPropagation();
                                 instanceRef.current?.prev();
-                            }} disabled={false} />
+                            }} disabled={false}
+                            shouldDisplay={!isAtStart}
+                        />
                         <Arrow
                             onClick={(e) => {
                                 e.preventDefault();
                                 e.stopPropagation();
                                 instanceRef.current?.next();
-                            }} disabled={false} />
+                            }} disabled={false}
+                            shouldDisplay={!isAtEnd}
+                        />
 
                     </Transition>
                 )}
