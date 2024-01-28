@@ -46,15 +46,15 @@ export const authOptions:NextAuthOptions= {
               });
         
               if (res.status === 401) {
-                console.log("blad jest tutaj 1")
+
                 console.log(res.statusText);
                 return null;
               }
         
               const userFromServer = await res.json();
-              console.log("1")
-              console.log(userFromServer)
-          
+              console.log("start userFromServer");
+              console.log(userFromServer);
+              console.log(" end userFromServer");
               return userFromServer;
             } catch (error) {
               console.error('An error occurred during authorization:', error);
@@ -65,66 +65,63 @@ export const authOptions:NextAuthOptions= {
       })
     ],
     callbacks: {
-      async jwt({ token, user, account, ...rest }) {
-        if (user?.access_token) {
-          token.accessToken = user.access_token; // Zakładając, że access_token jest częścią obiektu user
-          token.userId = user.userId
+      async signIn({ user, account, profile }) {
+        if (account?.provider === 'google') {
+            // Wyślij żądanie do swojego API, aby dodać/aktualizować użytkownika
+            const res = await fetch("http://localhost:3001/users/register/via-provider", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    email: user.email,
+                    name: user.name,
+                    provider: account?.provider
+                    // Możesz dodać więcej danych, jeśli są potrzebne
+                }),
+            });
+            if (!res.ok) {
+                // Obsłuż błąd, np. rzuć wyjątek
+                throw new Error('Błąd podczas dodawania użytkownika do bazy danych');
+            }
+            // Przetwarzaj odpowiedź, na przykład zapisz ID użytkownika
+            const userData = await res.json();
+            console.log(" start user");
+            console.log(user);
+            console.log(" end user");
+            console.log(" start userData");
+            console.log(userData);
+            console.log(" end userData");
+            user.userId = userData.id; // Załóżmy, że API zwraca ID użytkownika
+            user.userId = userData.userId;
+            user.access_token = userData.access_token;
+
         }
+        return true
+        // Dla tradycyjnego logowania (email i hasło)
+        // Możesz również dodać logikę tutaj, jeśli jest potrzebna
+
+        //return true; // Zwróć true, aby zakończyć proces logowania
+      },
+
+
+    
+      async jwt({ token, user, account }) {
+
+        if (user) {
+          token.userId = user.userId;
+          token.accessToken = user.access_token; // Zakładając, że access_token jest częścią obiektu user
+        }
+    
         return token;
       },
- 
-      async session({ session, token }) {
-        // Upewnij się, że session.user jest zdefiniowane
-        session.user = session.user || {};
-      
-        if (typeof token.accessToken === 'string') {
-          session.accessToken = token.accessToken; // Dodaj accessToken do sesji
-        }
-        if (token?.userId) {
-          session.user.userId = token.userId; // Dodaj userId do sesji
-        }
-        console.log(session);
-        return session;
-      }
-    //   async signIn ({user, account, profile})  {
-    //     const response = await fetch("http://localhost:3001/users/register/via-provider", {
-    //       method: "POST",
-    //       headers: {
-    //         "Content-Type": "application/json",
-    //       },
-    //       body: JSON.stringify({
-    //         email: user.email,
-    //         password:"",
-    //         name:"test",
-    //         provider: "google"
-    //        // inne dane użytkownika
-    //       }),
-    //     });
-    
-    //     if (!response.ok) {
-    //       throw new Error('Błąd podczas dodawania użytkownika do bazy danych');
-    //     }
 
-    //        // Pobierz token JWT z twojego backendu
-    //     // const tokenResponse = await fetch("http://localhost:3001/auth/login-google", {
-    //     //   method: "POST",
-    //     //   headers: {
-    //     //     "Content-Type": "application/json",
-    //     //   },
-    //     //   body: JSON.stringify({
-    //     //     email: user.email,
-    //     //     // Dodaj inne potrzebne dane, jeśli są wymagane do uwierzytelnienia
-    //     //   }),
-    //     // });
-        
-    //     // if (!tokenResponse.ok) {
-    //     //   throw new Error('Błąd podczas pobierania tokena JWT');
-    //     // }
-    
-    //     // const { token } = await tokenResponse.json();
-    //     // console.log(this.session)
-    //     return true;
-    //   },
+      async session({ session, token }) {
+        session.user = session.user || {};
+        session.user.userId = token.userId;
+        if (token.accessToken) session.accessToken = token.accessToken as string;
+        return session;
+      },
     }
   };
 

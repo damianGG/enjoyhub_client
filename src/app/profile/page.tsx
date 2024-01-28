@@ -16,6 +16,12 @@ type VenueData = {
     id: string;
     latitude: number;
     longitude: number;
+    category: {
+        id: number;
+        slug: string;
+        name: string;
+    };
+    categoryName: string;
 };
 
 type UserData = {
@@ -37,6 +43,7 @@ function ProfilePage() {
 
 
         getSession().then(session => {
+            console.log(session);
             if (!session) {
                 signIn();
             }
@@ -73,6 +80,7 @@ function ProfilePage() {
     useEffect(() => {
         // Pobieranie danych sesji
         getSession().then(session => {
+            console.log(session);
             if (!session) {
                 signIn();
             }
@@ -138,8 +146,14 @@ function ProfilePage() {
                             name: string;
                             photos: Photo[];
                             id: string;
+                            category: {
+                                id: number;
+                                slug: string;
+                                name: string;
+                            };
                             latitude: number;
                             longitude: number;
+                            categoryName: string;
                         }) => (
                             <VenueCard key={item.id} data={item} />
                         ))}

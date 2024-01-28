@@ -13,7 +13,7 @@ import karting from './icons/karting.png'
 import offRoad from './icons/off-road.png'
 import paintballGun from './icons/paintball-gun.png'
 import quad from './icons/quad.png'
-import { useEffect } from 'react';
+import "./styles.css"
 
 function Navigation() {
 
@@ -28,6 +28,17 @@ function Navigation() {
                 </button> */}
 
                 <div className="flex overflow-x-scroll hide-scrollbar  p-2 items-center gap-8">
+
+                    <Link href="/all" shallow={true} >
+                        <div className="flex flex-col items-center ">
+                            <div className="flex items-center dots-wrapper">
+                                <span className="dot"></span>
+                                <span className="dot"></span>
+                                <span className="dot"></span>
+                            </div>
+                            <span className='text-sm'>Wszystko</span>
+                        </div>
+                    </Link>
 
                     <Link href="/paintball" shallow={true} >
                         <div className="flex flex-col items-center">

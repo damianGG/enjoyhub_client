@@ -32,6 +32,7 @@ const PageAddListing1: FC<PageAddListing1Props> = () => {
 
   const onSubmittoSendForm = async (data: any) => {
     const session = await getSession();
+    console.log('Session:', session);
     if (session && session.accessToken) {
       try {
         const response = await fetch('http://localhost:3001/venue', {

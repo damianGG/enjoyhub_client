@@ -35,18 +35,34 @@ const LocationPicker: React.FC<LocationPickerProps> = ({ onLocationSelect }) => 
     };
 
     return (
-        <LoadScript
-            googleMapsApiKey="AIzaSyDwherVX1feEHOKQWL5naw63sji9gLU7sY"
-        >
-            <GoogleMap
-                mapContainerStyle={containerStyle}
-                center={center}
-                zoom={10}
-                onClick={onMapClick}
-            >
-                {marker && <Marker position={marker} />}
-            </GoogleMap>
-        </LoadScript>
+        <>
+            {window.google === undefined ?
+                <LoadScript
+                    googleMapsApiKey="AIzaSyDwherVX1feEHOKQWL5naw63sji9gLU7sY"
+                >
+                    <GoogleMap
+                        mapContainerStyle={containerStyle}
+                        center={center}
+                        zoom={10}
+                        onClick={onMapClick}
+                    >
+                        {marker && <Marker position={marker} />}
+                    </GoogleMap>
+                </LoadScript>
+                :
+                <GoogleMap
+                    mapContainerStyle={containerStyle}
+                    center={center}
+                    zoom={10}
+                    onClick={onMapClick}
+                >
+                    {marker && <Marker position={marker} />}
+                </GoogleMap>
+
+
+            }
+
+        </>
     );
 };
 

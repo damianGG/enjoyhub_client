@@ -17,7 +17,7 @@ type UserData = {
 
 const PositionManager: FC<PositionManagerProps> = ({ onLocationChange }) => {
     const [location, setLocation] = useState<UserData | null>(null);
-
+    console.log(location);
     const handleLocationSelect = (userData: UserData) => {
         setLocation(userData);
         onLocationChange(userData); // Corrected the function name here

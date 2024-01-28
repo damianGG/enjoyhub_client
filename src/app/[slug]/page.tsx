@@ -9,17 +9,22 @@ import Navigation from "@/components/Navigation/Navigation"
 
 
 async function getData({ params }: { params: { slug: string } }) {
+    let url;
 
-    const categoryName = params.slug;
-    const res = await fetch(`http://localhost:3001/venue/category/${categoryName}`)
-    // The return value is *not* serialized
-    // You can return Date, Map, Set, etc.
-    if (!res.ok) {
-        // This will activate the closest `error.js` Error Boundary
-        throw new Error('Failed to fetch data')
+    if (params.slug === "all") {
+        url = `http://localhost:3001/venue/all`;
+    } else {
+        const categoryName = params.slug;
+        url = `http://localhost:3001/venue/category/${categoryName}`;
     }
 
-    return res.json()
+    const res = await fetch(url);
+
+    if (!res.ok) {
+        throw new Error('Failed to fetch data');
+    }
+
+    return res.json();
 }
 
 export default async function Page({ params }: { params: { slug: string } }) {

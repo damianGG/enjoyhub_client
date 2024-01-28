@@ -14,7 +14,7 @@ function Header() {
             {/* Logo */}
             <div className="flex items-center">
                 <div className="relative w-24 h-10 cursor-pointer my-auto">
-                    <Link href={"/"}>
+                    <Link href={"/all"}>
                         <h1>EnjoyHub</h1>
                     </Link>
                 </div>
