@@ -1,13 +1,15 @@
 
 "use client"
 import React, { useState, useEffect } from 'react';
-
-import { getSession, signIn, signOut, useSession } from "next-auth/react";
+import { GetSessionParams, getSession, signIn, signOut, useSession } from "next-auth/react";
 import { Photo } from '@/components/GallerySlider/GallerySlider';
 import UserProfileForm from './UserProfileForm';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
 import VenueCard from './VenueCard';
+import { getServerSession } from "next-auth/next"
+import AddVenueCard from './AddVenueCard';
+
 
 type VenueData = {
     city: string;
@@ -38,6 +40,8 @@ function ProfilePage() {
 
     const [snackbarOpen, setSnackbarOpen] = useState(false);
     const [snackbarMessage, setSnackbarMessage] = useState('');
+
+
 
     const handleFormSubmit = (data: UserData) => {
 
@@ -135,12 +139,23 @@ function ProfilePage() {
         <div className={`nc-AuthorPage `}>
             <main className="container mt-12 mb-24 lg:mb-32 flex flex-col lg:flex-row">
                 <div className="block flex-grow mb-24 lg:mb-0">
+                    <div>
+                        <h2 className="text-3xl font-semibold">Twoje konto</h2>
+                    </div>
+                    <div className="w-14 border-b border-neutral-200 dark:border-neutral-700 mt-10 mb-4"></div>
                     <div className="lg:sticky lg:top-24">
                         {userData && <UserProfileForm userData={userData} onSubmit={handleFormSubmit} />}
                     </div>
                 </div>
+
                 <div className="w-full lg:w-3/5 xl:w-2/3 space-y-8 lg:space-y-10 lg:pl-10 flex-shrink-0">
+                    <div>
+                        <h2 className="text-3xl font-semibold">Twoje obiekty</h2>
+                    </div>
+                    <div className="w-14 border-b border-neutral-200 dark:border-neutral-700"></div>
                     <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-x-5 2xl:gap-x-6 gap-y-8 min-h-screen w-full xl:w-[50%] 2xl:w-[50%] max-w-[1184px] flex-shrink-0 xl:pr-8'>
+                        <AddVenueCard />
+
                         {venueData && venueData.map((item: {
                             city: string;
                             name: string;

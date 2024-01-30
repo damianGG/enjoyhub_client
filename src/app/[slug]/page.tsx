@@ -5,6 +5,7 @@ import { Photo } from "@/components/GallerySlider/GallerySlider"
 import MapFromGoogle from "@/components/MapFromGoogle"
 import GlobalLoadingIndicator from "@/components/GlobalLoadingIndicator"
 import Navigation from "@/components/Navigation/Navigation"
+import BgGlassmorphism from "@/components/BgGlassmorphism"
 
 
 
@@ -35,6 +36,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
                 <Navigation />
                 <div className="container pb-24 lg:pb-28 2xl:pl-10 xl:pr-0 xl:max-w-none">
                     <div className="relative flex min-h-screen">
+                        <BgGlassmorphism />
                         {/* CARDSSSS */}
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-5 2xl:gap-x-6 gap-y-8 min-h-screen w-full xl:w-[50%] 2xl:w-[50%] max-w-[977px] flex-shrink-0 xl:pr-8">
                             {venueWithPhotos.map((item: {

@@ -19,7 +19,7 @@ const SigninButton = () => {
         );
     }
     return (
-        <button onClick={() => signIn()}
+        <button onClick={() => signIn('google')}
             className="flex w-full rounded-lg bg-primary-50  px-4 py-3 transform transition-transform sm:px-6 hover:translate-y-[-2px]"
         >
             <Image className="flex-shrink-0" alt="google_icon" width={20} height={20} src={googleSvg} />

@@ -30,16 +30,18 @@ const UserProfileForm: React.FC<UserProfileFormProps> = ({ userData, onSubmit })
     return (
         <form onSubmit={handleSubmit(onSubmitHandler)}>
             <div>
-                <Label>Name</Label>
+                <Label>Imię i nazwisko</Label>
                 <Input {...register('name', { required: true })} />
-            </div>
+            </div >
 
             <div>
                 <Label>Email</Label>
                 <Input disabled {...register('email', { required: true })} />
             </div>
+            <div className='mt-8'>
+                <Button variant="contained" disabled={!isDirty} type="submit">Zapisz zmiany</Button>
 
-            <Button className=' mt-8' variant="contained" disabled={!isDirty} type="submit">Zapisz zmiany</Button>
+            </div>
         </form>
     );
 };

@@ -14,19 +14,6 @@ export interface PaintBallProps {
 
 const PaintballCard: FC<PaintBallProps> = ({ data }) => {
 
-    const convertStringToURLFormat = (str: string) => {
-        const map: { [key: string]: string } = {
-            'ą': 'a', 'ć': 'c', 'ę': 'e', 'ł': 'l', 'ń': 'n', 'ó': 'o', 'ś': 's', 'ż': 'z', 'ź': 'z',
-            'Ą': 'A', 'Ć': 'C', 'Ę': 'E', 'Ł': 'L', 'Ń': 'N', 'Ó': 'O', 'Ś': 'S', 'Ż': 'Z', 'Ź': 'Z'
-        };
-        return str.replace(/[ąćęłńóśżźĄĆĘŁŃÓŚŻŹ]/g, (match) => map[match])  // Remove Polish characters
-            .replace(/[\W_]+/g, " ")  // Remove all non-alphanumeric or underscore characters
-            .replace(/ /g, '-')      // Replace spaces with "-"
-            .toLowerCase();
-    };
-
-    const nameForURL = convertStringToURLFormat(data?.name || "");
-    const cityForURL = convertStringToURLFormat(data?.city || "");
     const id = data?.id;
     const categoryName = data?.category?.name;
 
@@ -78,7 +65,7 @@ const PaintballCard: FC<PaintBallProps> = ({ data }) => {
                 data-nc-id="CarCard"
             >
 
-                {renderSliderGallery()}
+                {/* {renderSliderGallery()} */}
                 {renderContent()}
 
             </div>

@@ -36,11 +36,11 @@ export default async function Page({ params }: { params: { venueName: string } }
                     <div
                         className="col-span-2 row-span-3 sm:row-span-2 relative rounded-md sm:rounded-xl overflow-hidden cursor-pointer"
                     >
-                        {/* <Image
+                        <Image
                             width={900} height={500} src={firstPhoto.url} alt={`Slide ${firstPhoto.id}`}
                             className="object-cover rounded-md sm:rounded-xl"
                             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 50vw"
-                        /> */}
+                        />
                         <div className="absolute inset-0 bg-neutral-900 bg-opacity-20 opacity-0 hover:opacity-100 transition-opacity"></div>
                     </div>
                     {PHOTOS.filter((_: string, i: number) => i >= 1 && i < 5).map((item: { url: string }, index: number) => (
