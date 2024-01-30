@@ -10,7 +10,7 @@ import Link from "next/link";
 const AddVenueCard = () => {
 
     return (
-        <Link className="h-fit" href={`/profile/addvenue`} passHref>
+        <Link className="h-fit" href={`/profile/add-venue`} passHref>
             <div
                 className={`nc-CarCard group relative border border-neutral-200  rounded-3xl overflow-hidden bg-white`}
                 data-nc-id="CarCard"

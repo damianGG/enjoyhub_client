@@ -18,10 +18,12 @@ export default async function Page({ params }: { params: { venueName: string } }
     ]);
 
     if (!res.ok) {
-        throw new Error('Failed to fetch data')
+        //throw new Error('Failed to fetch data')
+        console.log('Failed to fetch data')
     }
     if (!resPhotos.ok) {
-        throw new Error('Failed to fetch data photos')
+        // throw new Error('Failed to fetch data photos')
+        console.log('Failed to fetch data photos')
     }
 
     // Parse the JSON for both responses

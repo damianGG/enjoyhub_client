@@ -13,6 +13,8 @@ import quady from '@/images/icons/quad.png'
 import gokarty from '@/images/icons/karting.png'
 import aim from '@/images/icons/aim.png'
 import offroad from '@/images/icons/off-road.png'
+import ButtonPrimary from "@/components/ButtonPrimary";
+import ButtonSecondary from "@/components/ButtonSecondary";
 
 export interface PageAddListing1Props { }
 type TFormValues = {
@@ -70,43 +72,54 @@ const PageAddListing1: FC<PageAddListing1Props> = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onHandleFormSubmit)}>
-      <Controller
-        name="categoryId"
-        control={control}
-        render={({ field }) => (
-          <div className="flex gap-8 flex-wrap justify-between">
-            {options.map((option) => (
-              <label key={option.id}
-                style={{
-                  cursor: 'pointer',
-                  margin: '10px',
-                  padding: '25px',
-                  borderRadius: '50%',
-                  background: selectedId === option.id ? 'lightgrey' : 'transparent',
-                }}
-                onClick={() => {
-                  field.onChange(option.id);
-                  setSelectedId(option.id);
-                }}
+    <>
+      <h2 className="text-2xl font-semibold">Kliknij na obiektu który chcesz dodać</h2>
+      <div className="w-14 border-b border-neutral-200 dark:border-neutral-700"></div>
+      <form onSubmit={handleSubmit(onHandleFormSubmit)}>
+        <Controller
+          name="categoryId"
+          control={control}
+          render={({ field }) => (
+            <div className="flex gap-6 flex-wrap justify-between">
+              {options.map((option) => (
+                <div key={option.id} className="w-30 flex-col p-4 bg-neutral-50 dark:bg-neutral-800 rounded-2xl dark:border-neutral-800 flex "
+                  style={{
+                    cursor: 'pointer',
+                    padding: '25px',
+                    background: selectedId === option.id ? 'lightgrey' : '#f9fafb',
+                  }}
+                  onClick={() => {
+                    field.onChange(option.id);
+                    setSelectedId(option.id);
+                  }}
 
-              >
-                <input
-                  type="radio"
-                  value={option.id}
-                  checked={field.value === option}
-                  onChange={() => field.onChange(option.id)}
-                  style={{ display: 'none' }}
-                />
-                <Image src={option.image} alt={`Option ${option.label}`} style={{ cursor: 'pointer', margin: '10px' }} width={150} height={150} />
-                <div className="font-medium text-center mt-2">{option.label}</div>
-              </label>
-            ))}
-          </div>
-        )}
-      />
-      <button type="submit">Submit</button>
-    </form>
+                >
+                  <label
+                  >
+
+                    <input
+                      type="radio"
+                      value={option.id}
+                      checked={field.value === option}
+                      onChange={() => field.onChange(option.id)}
+                      style={{ display: 'none' }}
+                    />
+
+                    <Image src={option.image} alt={`Option ${option.label}`} style={{ cursor: 'pointer', margin: '10px' }} width={75} height={75} />
+                    <h4 className="font-medium text-center mt-2">{option.label}</h4>
+
+                  </label>
+                </div>
+              ))}
+            </div>
+          )}
+        />
+        {/* <button type="submit">Submit</button> */}
+        <div className="flex justify-end space-x-5 mt-12">
+          <ButtonPrimary type="submit">Dalej</ButtonPrimary>
+        </div>
+      </form>
+    </>
 
   );
 };

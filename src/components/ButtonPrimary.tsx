@@ -2,11 +2,15 @@ import Button from "@/components/Button";
 import React from "react";
 
 export interface ButtonPrimaryProps {
+  children: React.ReactNode;
   className?: string
+  type?: string
 }
 
 const ButtonPrimary: React.FC<ButtonPrimaryProps> = ({
+
   className = "",
+  type = "",
   ...args
 }) => {
   return (

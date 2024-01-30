@@ -3,6 +3,8 @@ import { useFormState } from "./FormContext";
 import "./PageAddListing3.css";
 import LinearProgress from '@mui/material/LinearProgress';
 import { useForm } from "react-hook-form";
+import ButtonPrimary from "@/components/ButtonPrimary";
+import ButtonSecondary from "@/components/ButtonSecondary";
 export interface PageAddListing3Props { }
 
 interface Image {
@@ -173,7 +175,10 @@ const PageAddListing3: FC<PageAddListing3Props> = () => {
             ))}
           </div>
         </div>
-        <button type="submit">Submit</button>
+        <div className="flex justify-between space-x-5 mt-12">
+          <ButtonSecondary onClick={onHandleBack}>Cofnij</ButtonSecondary>
+          <ButtonPrimary type="submit">Dalej</ButtonPrimary>
+        </div>
       </form>
     </>
   );

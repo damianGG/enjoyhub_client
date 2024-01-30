@@ -12,6 +12,8 @@ import FormItem from "../FormItem";
 import { useFormState } from "./FormContext";
 import { Controller, useForm } from "react-hook-form";
 import LocationPicker from "./LocationPicker";
+import ButtonPrimary from "@/components/ButtonPrimary";
+import ButtonSecondary from "@/components/ButtonSecondary";
 
 
 
@@ -21,7 +23,7 @@ type TFormValues = {
 };
 const PageAddListing2: FC<PageAddListing2Props> = () => {
   const [isCreated, setCreated] = useState(false);
-  const { setFormData, formData, onHandleBack,onHandleNext } = useFormState();
+  const { setFormData, formData, onHandleBack, onHandleNext } = useFormState();
   const { register, handleSubmit } = useForm<TFormValues>({
     defaultValues: formData,
   });
@@ -34,40 +36,54 @@ const PageAddListing2: FC<PageAddListing2Props> = () => {
 
   const handleLocationSelect = (latlng: { lat: any; lng: any; }) => {
     setFormData((prevState: any) => ({ ...prevState, latitude: latlng.lat, longitude: latlng.lng }));
+    console.log("Lat:", latlng.lat);
   };
   const { control } = useForm();
 
-  return isCreated ? (
-    <div>
-      <p>Account created successfully</p>
-      <pre>{JSON.stringify(formData)}</pre>
-    </div>) : (
-    <form className="space-y-6" onSubmit={handleSubmit(onHandleFormSubmit)}>
-      <Controller
-        name="latitude"
-        control={control}
-        render={({ field }) => <input type="hidden" {...field} />}
-      />
-      <Controller
-        name="longitude"
-        control={control}
-        render={({ field }) => <input type="hidden" {...field} />}
-      />
-      <LocationPicker onLocationSelect={handleLocationSelect} />
-      <div className="flex gap-4 justify-end">
-        <button
-          type="button"
-          onClick={onHandleBack}
-          className="h-11 px-6 inline-block bg-blue-600 font-semibold text-black rounded-md"
-        >
-          Back
-        </button>
-        <button className="h-11 px-6 inline-block bg-blue-600 font-semibold text-black rounded-md">
-          Create
-        </button>
+  return (
+    <>
+      <div>
+        <h2 className="text-2xl font-semibold">Lokalizacja</h2>
+        <span className="block mt-2 text-neutral-500 dark:text-neutral-400">
+          uzupełnij pola z lokalizacją obiektu aby nikt nie miał problemu Cię znaleźć
+        </span>
+
       </div>
-      <button type="submit">Submit</button>
-    </form>
+      <div className="w-14 border-b border-neutral-200 dark:border-neutral-700"></div>
+      <form className="space-y-6" onSubmit={handleSubmit(onHandleFormSubmit)}>
+        <FormItem label="Kod pocztowy">
+          <Input placeholder="" />
+        </FormItem>
+        <FormItem label="Miejscowość">
+          <Input placeholder="Miejscowość" />
+        </FormItem>
+        <FormItem label="Ulica">
+          <Input placeholder="" />
+        </FormItem>
+        <FormItem label="Numer">
+          <Input placeholder="" />
+        </FormItem>
+        <h3 className="pt-10">Wskaż na mapie dokładną lokalizację obiektu</h3>
+        <Controller
+          name="latitude"
+          control={control}
+          render={({ field }) => <input type="hidden" {...field} />}
+        />
+        <Controller
+          name="longitude"
+          control={control}
+          render={({ field }) => <input type="hidden" {...field} />}
+        />
+        <LocationPicker onLocationSelect={handleLocationSelect} />
+        <div className="flex gap-4 justify-end">
+
+        </div>
+        <div className="flex justify-between space-x-5 mt-12">
+          <ButtonSecondary onClick={onHandleBack}>Cofnij</ButtonSecondary>
+          <ButtonPrimary type="submit">Dalej</ButtonPrimary>
+        </div>
+      </form>
+    </>
   );
 };
 
