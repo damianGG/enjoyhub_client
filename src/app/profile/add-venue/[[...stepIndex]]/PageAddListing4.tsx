@@ -5,6 +5,8 @@ import FormItem from "../FormItem";
 import { TextField } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { useFormState } from "./FormContext";
+import ButtonSecondary from "@/components/ButtonSecondary";
+import ButtonPrimary from "@/components/ButtonPrimary";
 export interface PageAddListing4Props { }
 type TFormValues = {
 };
@@ -38,7 +40,10 @@ const PageAddListing4: FC<PageAddListing4Props> = () => {
                         placeholder="..."
                     ></textarea>
                 </div>
-                <button type="submit">Submit</button>
+                <div className="flex justify-between space-x-5 mt-12">
+                    <ButtonSecondary onClick={onHandleBack}>Cofnij</ButtonSecondary>
+                    <ButtonPrimary type="submit">Dalej</ButtonPrimary>
+                </div>
             </form>
         </>
     );

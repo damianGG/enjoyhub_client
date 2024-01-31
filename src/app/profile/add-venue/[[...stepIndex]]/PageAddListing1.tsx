@@ -19,7 +19,7 @@ import ButtonSecondary from "@/components/ButtonSecondary";
 export interface PageAddListing1Props { }
 type TFormValues = {
 };
-const PageAddListing1: FC<PageAddListing1Props> = () => {
+const PageAddListing1: FC<PageAddListing1Props> = ({ }) => {
   const { onHandleNext, setFormData, formData } = useFormState();
   const { control, register, handleSubmit, watch, formState: { errors } } = useForm();
   const [selectedId, setSelectedId] = useState<number | null>(null);

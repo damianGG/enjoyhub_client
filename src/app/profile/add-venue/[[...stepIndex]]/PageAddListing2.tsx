@@ -4,7 +4,7 @@ import { MapPinIcon } from "@heroicons/react/24/solid";
 //import LocationMarker from "@/components/AnyReactComponent/LocationMarker";
 import Label from "@/components/Label";
 import GoogleMapReact from "google-map-react";
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import Button from "@/shared/Button";
 import Input from "@/shared/Input";
 import Select from "@/shared/Select";
@@ -20,11 +20,19 @@ import ButtonSecondary from "@/components/ButtonSecondary";
 
 export interface PageAddListing2Props { }
 type TFormValues = {
+  postalCode: string;
+  city: string;
+  street: string;
+  street_number: string;
+  latitude?: number;
+  longitude?: number;
 };
+
+
 const PageAddListing2: FC<PageAddListing2Props> = () => {
   const [isCreated, setCreated] = useState(false);
   const { setFormData, formData, onHandleBack, onHandleNext } = useFormState();
-  const { register, handleSubmit } = useForm<TFormValues>({
+  const { register, handleSubmit, control } = useForm<TFormValues>({
     defaultValues: formData,
   });
 
@@ -36,9 +44,15 @@ const PageAddListing2: FC<PageAddListing2Props> = () => {
 
   const handleLocationSelect = (latlng: { lat: any; lng: any; }) => {
     setFormData((prevState: any) => ({ ...prevState, latitude: latlng.lat, longitude: latlng.lng }));
-    console.log("Lat:", latlng.lat);
   };
-  const { control } = useForm();
+
+  useEffect(() => {
+    console.log("Aktualne formData:", formData);
+  }, [formData]);
+
+  useEffect(() => {
+    console.log("Przywrócone formData:", formData);
+  }, []);
 
   return (
     <>
@@ -51,18 +65,23 @@ const PageAddListing2: FC<PageAddListing2Props> = () => {
       </div>
       <div className="w-14 border-b border-neutral-200 dark:border-neutral-700"></div>
       <form className="space-y-6" onSubmit={handleSubmit(onHandleFormSubmit)}>
-        <FormItem label="Kod pocztowy">
-          <Input placeholder="" />
-        </FormItem>
-        <FormItem label="Miejscowość">
-          <Input placeholder="Miejscowość" />
-        </FormItem>
-        <FormItem label="Ulica">
-          <Input placeholder="" />
-        </FormItem>
-        <FormItem label="Numer">
-          <Input placeholder="" />
-        </FormItem>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-5">
+          <FormItem label="Kod pocztowy">
+            <Input {...register("postalCode")} placeholder="" />
+          </FormItem>
+          <FormItem label="Miejscowość">
+            <Input {...register("city")} placeholder="" />
+          </FormItem>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-5">
+          <FormItem label="Ulica">
+            <Input {...register("street")} placeholder="" />
+          </FormItem>
+          <FormItem label="Numer">
+            <Input {...register("street_number")} placeholder="" />
+          </FormItem>
+        </div>
         <h3 className="pt-10">Wskaż na mapie dokładną lokalizację obiektu</h3>
         <Controller
           name="latitude"
@@ -74,7 +93,12 @@ const PageAddListing2: FC<PageAddListing2Props> = () => {
           control={control}
           render={({ field }) => <input type="hidden" {...field} />}
         />
-        <LocationPicker onLocationSelect={handleLocationSelect} />
+        <LocationPicker
+          onLocationSelect={handleLocationSelect}
+          latitude={formData.latitude}
+          longitude={formData.longitude}
+
+        />
         <div className="flex gap-4 justify-end">
 
         </div>

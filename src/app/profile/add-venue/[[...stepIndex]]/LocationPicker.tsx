@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 
 
@@ -7,10 +7,7 @@ const containerStyle = {
     height: '400px'
 };
 
-const center = {
-    lat: -34.397,
-    lng: 150.644
-};
+
 
 type LatLng = {
     lat: number;
@@ -19,10 +16,24 @@ type LatLng = {
 
 type LocationPickerProps = {
     onLocationSelect: (location: any) => void;
+    latitude: number,
+    longitude: number
 };
 
-const LocationPicker: React.FC<LocationPickerProps> = ({ onLocationSelect }) => {
-    const [marker, setMarker] = useState<LatLng>(null);
+const LocationPicker: React.FC<LocationPickerProps> = ({ onLocationSelect, latitude, longitude }) => {
+    const initialMarker = (latitude && longitude) ? { lat: latitude, lng: longitude } : null;
+    const [marker, setMarker] = useState<LatLng>(initialMarker);
+
+    const center = marker || {
+        lat: 52.23,
+        lng: 21.01
+    };
+
+    useEffect(() => {
+        if (latitude && longitude) {
+            setMarker({ lat: latitude, lng: longitude });
+        }
+    }, [latitude, longitude]);
 
     const onMapClick = (e: any) => {
         const latLng = {
@@ -34,6 +45,7 @@ const LocationPicker: React.FC<LocationPickerProps> = ({ onLocationSelect }) => 
         onLocationSelect(latLng);
     };
 
+
     return (
         <>
             {window.google === undefined ?
@@ -43,7 +55,7 @@ const LocationPicker: React.FC<LocationPickerProps> = ({ onLocationSelect }) => 
                     <GoogleMap
                         mapContainerStyle={containerStyle}
                         center={center}
-                        zoom={10}
+                        zoom={5}
                         onClick={onMapClick}
                     >
                         {marker && <Marker position={marker} />}

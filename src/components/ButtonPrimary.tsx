@@ -5,7 +5,10 @@ export interface ButtonPrimaryProps {
   children: React.ReactNode;
   className?: string
   type?: string
+  onClick?: () => void
 }
+
+
 
 const ButtonPrimary: React.FC<ButtonPrimaryProps> = ({
 
