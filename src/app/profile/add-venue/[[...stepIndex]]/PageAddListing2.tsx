@@ -104,7 +104,7 @@ const PageAddListing2: FC<PageAddListing2Props> = () => {
         </div>
         <div className="flex justify-between space-x-5 mt-12">
           <ButtonSecondary onClick={onHandleBack}>Cofnij</ButtonSecondary>
-          <ButtonPrimary type="submit">Dalej</ButtonPrimary>
+          <ButtonPrimary onClick={onHandleNext}>Dalej</ButtonPrimary>
         </div>
       </form>
     </>

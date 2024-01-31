@@ -22,6 +22,8 @@ type LocationPickerProps = {
 
 const LocationPicker: React.FC<LocationPickerProps> = ({ onLocationSelect, latitude, longitude }) => {
     const initialMarker = (latitude && longitude) ? { lat: latitude, lng: longitude } : null;
+    //const initialMarker = { lat: 52.25774866185651, lng: 21.076604614257803 }
+    console.log(initialMarker)
     const [marker, setMarker] = useState<LatLng>(initialMarker);
 
     const center = marker || {
