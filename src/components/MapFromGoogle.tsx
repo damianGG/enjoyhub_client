@@ -5,6 +5,8 @@ import { GoogleMap, useJsApiLoader, Marker, InfoWindow } from '@react-google-map
 import CustomMarker from './CustomMarker/CustomMarker';
 import { PaintBallType } from "@/data/paintball.types"
 import { CSSProperties } from 'react';
+
+
 interface MapFromGoogleProps {
   paintballPlaces: PaintBallType[];
   className?: string;
@@ -41,10 +43,71 @@ function MapFromGoogle({ paintballPlaces }: MapFromGoogleProps) {
 
   const mapStyles = useMemo(() => [
     {
-      featureType: "poi",
-      elementType: "labels",
-      stylers: [{ visibility: "off" }],
+      "featureType": "landscape",
+      "elementType": "all",
+      "stylers": [
+        { "color": "#e8f4f5" } // Zmieniono główny kolor tła
+      ]
     },
+    {
+      "featureType": "poi",
+      "elementType": "all",
+      "stylers": [
+        { "visibility": "off" }
+      ]
+    },
+    {
+      "featureType": "road",
+      "elementType": "all",
+      "stylers": [
+        { "saturation": -100 },
+        { "lightness": 45 }
+      ]
+    },
+    {
+      "featureType": "road.highway",
+      "elementType": "all",
+      "stylers": [
+        { "visibility": "simplified" }
+      ]
+    },
+    {
+      "featureType": "road.arterial",
+      "elementType": "labels.icon",
+      "stylers": [
+        { "visibility": "off" }
+      ]
+    },
+    {
+      "featureType": "administrative.locality",
+      "elementType": "labels",
+      "stylers": [
+        { "visibility": "on" } // Włącza etykiety miejscowości
+      ]
+    },
+    {
+      "featureType": "administrative.neighborhood",
+      "elementType": "labels",
+      "stylers": [
+        { "visibility": "off" }
+      ]
+    },
+    {
+      "featureType": "transit",
+      "elementType": "all",
+      "stylers": [
+        { "visibility": "off" }
+      ]
+    },
+    {
+      "featureType": "water",
+      "elementType": "all",
+      "stylers": [
+        { "color": "#C6E2FF" },
+        { "visibility": "on" }
+      ]
+    }
+
   ], []);
 
   return isLoaded ? (
@@ -67,7 +130,7 @@ function MapFromGoogle({ paintballPlaces }: MapFromGoogleProps) {
           lng={place.longitude}
           map={map}
           //imageSrc='/icons/paintball-gun.svg'
-          imageSrc={place.category.name}
+          imageSrc={`/icons/${place.category.name}.svg`}
           dataOfVenue={place}
         />
       ))}

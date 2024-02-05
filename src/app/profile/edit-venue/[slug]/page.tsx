@@ -83,8 +83,6 @@ export default function Page({
             if (!response.ok) {
                 throw new Error('Failed to update data');
             }
-
-            // Opcjonalnie: Ponowne pobieranie danych, aby odświeżyć stan
             fetchData();
         } catch (error) {
             console.error(error);

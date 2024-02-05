@@ -26,7 +26,9 @@ type TFormValues = {
   street_number: string;
   latitude?: number;
   longitude?: number;
+
 };
+
 
 
 const PageAddListing2: FC<PageAddListing2Props> = () => {
@@ -38,21 +40,34 @@ const PageAddListing2: FC<PageAddListing2Props> = () => {
 
   const onHandleFormSubmit = (data: TFormValues) => {
     setFormData((prev: any) => ({ ...prev, ...data }));
+    updateData(data);
     onHandleNext();
     //setCreated(true);
   };
 
   const handleLocationSelect = (latlng: { lat: any; lng: any; }) => {
     setFormData((prevState: any) => ({ ...prevState, latitude: latlng.lat, longitude: latlng.lng }));
+    console.log(formData);
   };
 
-  useEffect(() => {
-    console.log("Aktualne formData:", formData);
-  }, [formData]);
+  const updateData = async (updatedUserData: TFormValues) => {
+    try {
+      const response = await fetch(`http://localhost:3001/venue/${formData.venueId}`, {
+        method: 'POST', // lub 'POST', w zależności od API
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(updatedUserData),
+      });
 
-  useEffect(() => {
-    console.log("Przywrócone formData:", formData);
-  }, []);
+      if (!response.ok) {
+        throw new Error('Failed to update data');
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
 
   return (
     <>
@@ -104,7 +119,7 @@ const PageAddListing2: FC<PageAddListing2Props> = () => {
         </div>
         <div className="flex justify-between space-x-5 mt-12">
           <ButtonSecondary onClick={onHandleBack}>Cofnij</ButtonSecondary>
-          <ButtonPrimary onClick={onHandleNext}>Dalej</ButtonPrimary>
+          <ButtonPrimary type="submit">Dalej</ButtonPrimary>
         </div>
       </form>
     </>

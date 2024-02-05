@@ -5,6 +5,8 @@ import FormItem from "../FormItem";
 import { TextField } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { useFormState } from "./FormContext";
+import ButtonSecondary from "@/components/ButtonSecondary";
+import ButtonPrimary from "@/components/ButtonPrimary";
 export interface PageAddListing4Props { }
 type TFormValues = {
 };
@@ -45,11 +47,9 @@ const PageAddListing4: FC<PageAddListing4Props> = () => {
                         <Input placeholder="link do konta na instagramie" />
                     </FormItem>
                 </div>
-                <div className="flex justify-between mt-10">
-                    <button className="nc-Button relative h-auto inline-flex items-center justify-center rounded-full transition-colors text-sm sm:text-base font-medium px-4 py-3 sm:px-6  ttnc-ButtonSecondary font-medium border bg-white border-neutral-200 text-neutral-700 dark:bg-neutral-900 dark:text-neutral-300 dark:border-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-800  " type="submit">Cofnij</button>
-
-                    <button className="nc-Button relative h-auto inline-flex items-center justify-center rounded-full transition-colors text-sm sm:text-base font-medium px-4 py-3 sm:px-6  ttnc-ButtonPrimary disabled:bg-opacity-70 bg-primary-6000 hover:bg-primary-700 text-neutral-50   " type="submit">Dalej</button>
-
+                <div className="flex justify-between space-x-5 mt-12">
+                    <ButtonSecondary onClick={onHandleBack}>Cofnij</ButtonSecondary>
+                    <ButtonPrimary type="submit">Dalej</ButtonPrimary>
                 </div>
             </form>
         </>
