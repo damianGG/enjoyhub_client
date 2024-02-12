@@ -11,7 +11,8 @@ import exit from './icons/exit.png'
 import jumper from './icons/jumper.png'
 import karting from './icons/karting.png'
 import offRoad from './icons/off-road.png'
-import paintballGun from './icons/paintball-gun.png'
+
+// import paintballGun from '/paintball'
 import quad from './icons/quad.png'
 import "./styles.css"
 
@@ -43,7 +44,7 @@ function Navigation() {
                     <Link href="/paintball" shallow={true} >
                         <div className="flex flex-col items-center">
                             <Image
-                                src={paintballGun}
+                                src="/icons/paintball.svg"
                                 alt="aim"
                                 width={50}
                                 height={50}
@@ -56,7 +57,7 @@ function Navigation() {
                     <Link href="/quady" shallow={true}>
                         <div className="flex flex-col items-center">
                             <Image
-                                src={quad}
+                                src="/icons/quady.svg"
                                 alt="aim"
                                 width={50}
                                 height={50}
@@ -68,7 +69,7 @@ function Navigation() {
                     <Link href="/gokarty" shallow={true}>
                         <div className="flex flex-col items-center">
                             <Image
-                                src={karting}
+                                src="/icons/gokarty.svg"
                                 alt="gokart"
                                 width={50}
                                 height={50}

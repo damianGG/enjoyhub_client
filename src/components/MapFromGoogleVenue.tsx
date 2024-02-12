@@ -7,6 +7,7 @@ import CustomMarker from './CustomMarker/CustomMarker';
 interface MapFromGoogleVenueProps {
   latitude: number;
   longitude: number;
+  venueName?: string;
 }
 
 const containerStyle = {
@@ -17,14 +18,9 @@ const containerStyle = {
   marginBottom: "5rem"
 };
 
-const center = {
-  lat: 50.5083,
-  lng: 21.42584
-};
 
 
-
-function MapFromGoogleVenue({ latitude, longitude }: MapFromGoogleVenueProps) {
+function MapFromGoogleVenue({ latitude, longitude, venueName }: MapFromGoogleVenueProps) {
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: "AIzaSyDwherVX1feEHOKQWL5naw63sji9gLU7sY"
@@ -32,6 +28,11 @@ function MapFromGoogleVenue({ latitude, longitude }: MapFromGoogleVenueProps) {
 
 
   const [map, setMap] = React.useState<google.maps.Map | null>(null);
+
+  const center = {
+    lat: 55,
+    lng: 23
+  }
 
   const onLoad = React.useCallback(function callback(map: google.maps.Map) {
     // This is just an example of getting and using the map instance!!! don't just blindly copy!
@@ -53,12 +54,13 @@ function MapFromGoogleVenue({ latitude, longitude }: MapFromGoogleVenueProps) {
     },
   ], []);
 
-  const [selectedMarker, setSelectedMarker] = useState<{ lat: number; lng: number; } | null>(null);
+  //const [selectedMarker, setSelectedMarker] = useState<{ lat: number; lng: number; venueName: string } | null>(null);
 
   return isLoaded ? (
     <GoogleMap
       mapContainerStyle={containerStyle}
       center={{ lat: latitude, lng: longitude }}
+      //center={{ lat: 11, lng: 11 }}
       zoom={11}
       onLoad={onLoad}
       onUnmount={onUnmount}
@@ -66,13 +68,14 @@ function MapFromGoogleVenue({ latitude, longitude }: MapFromGoogleVenueProps) {
         styles: mapStyles,
         gestureHandling: 'greedy'
       }}
+
     >
       {map && (
         <CustomMarker
           lat={latitude}
           lng={longitude}
           map={map}
-          imageSrc='/icons/paintball-gun.svg'
+          imageSrc={`/${venueName}`}
           dataOfVenue={undefined}
         />
       )}

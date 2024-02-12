@@ -28,9 +28,10 @@ export default async function Page({ params }: { params: { venueName: string } }
 
     // Parse the JSON for both responses
     const [data, PHOTOS] = await Promise.all([res.json(), resPhotos.json()]);
-    const firstPhoto = PHOTOS[0];
-    console.log(PHOTOS)
 
+    const firstPhoto = PHOTOS[0];
+    const data2 = data[0];
+    console.log(data2);
     const renderGallery = () => {
         return (
             < div className="rounded-md sm:rounded-xl" >
@@ -183,7 +184,11 @@ export default async function Page({ params }: { params: { venueName: string } }
             {renderGallery()}
             {rederMainPage()}
 
-            <MapFromGoogleVenue latitude={data.latitude} longitude={data.longitude} />
+            {<MapFromGoogleVenue latitude={data2.latitude} longitude={data2.longitude}
+                venueName={data2.category ? data2.category.name : 'paintball'}
+
+            />}
+
         </div>
 
 

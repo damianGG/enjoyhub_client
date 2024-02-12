@@ -46,7 +46,14 @@ function MapFromGoogle({ paintballPlaces }: MapFromGoogleProps) {
       "featureType": "landscape",
       "elementType": "all",
       "stylers": [
-        { "color": "#e8f4f5" } // Zmieniono główny kolor tła
+        { "color": "#c8e8d1" } // Zmieniono główny kolor tła
+      ]
+    },
+    {
+      "featureType": "landscape.man_made",
+      "elementType": "geometry",
+      "stylers": [
+        { "color": "#f8f4f1" } // Przykładowy kolor dla terenów miejskich
       ]
     },
     {
@@ -129,8 +136,8 @@ function MapFromGoogle({ paintballPlaces }: MapFromGoogleProps) {
           lat={place.latitude}
           lng={place.longitude}
           map={map}
-          //imageSrc='/icons/paintball-gun.svg'
-          imageSrc={`/icons/${place.category.name}.svg`}
+          // imageSrc='/paintball'
+          imageSrc={`/${place.category.name}`}
           dataOfVenue={place}
         />
       ))}
