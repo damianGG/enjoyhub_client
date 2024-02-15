@@ -13,7 +13,7 @@ interface MapFromGoogleProps {
 }
 
 const containerStyle: CSSProperties = {
-  width: '46vw',
+  width: '47vw',
   height: '78vh',
   borderRadius: "1rem",
 };

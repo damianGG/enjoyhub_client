@@ -5,17 +5,13 @@ import CredentialsProvider from "next-auth/providers/credentials"
 import { NextAuthOptions, RequestInternal } from "next-auth";
 
 
-
-
-
-
 export const authOptions:NextAuthOptions= {
   //debug: process.env.NODE_ENV === "development",
     secret: process.env.NEXTAUTH_SECRET,
     providers: [
       GoogleProvider({
-        clientId: "148645235903-t0u6mdnnv9f02c7o9c1nmkkbnhgd7drn.apps.googleusercontent.com",
-        clientSecret: "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",
+        clientId: `${process.env.GOOGLE_CLIENT_ID}`,
+        clientSecret: `${process.env.GOOGLE_SECRET}`,
       }),
       CredentialsProvider({
         name: "Credentials",
@@ -27,7 +23,7 @@ export const authOptions:NextAuthOptions= {
           },
           password: { label: "Password", type: "password" },
         },
-        async authorize(credentials, req: any) { // Użyj 'any' tutaj
+        async authorize(credentials, req: any) {
           if(credentials!== undefined){
             const { email, password } = credentials;
             try {

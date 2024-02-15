@@ -1,82 +1,16 @@
-'use client'
 
-import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/solid';
-import Image from 'next/image';
-import Link from 'next/link'
-import { useRouter } from 'next/navigation'
-
-
-import aim from './icons/aim.png'
-import exit from './icons/exit.png'
-import jumper from './icons/jumper.png'
-import karting from './icons/karting.png'
-import offRoad from './icons/off-road.png'
-
-// import paintballGun from '/paintball'
-import quad from './icons/quad.png'
 import "./styles.css"
+import { NavItem } from './NavItem';
 
 function Navigation() {
-
-
-    const router = useRouter();
-
     return (
-        <div className="  flex justify-center sticky top-20 z-2 bg-white bottom-shadow  md:px-10 mb-8">
+        <div className="flex justify-center sticky top-20 z-2 bg-white bottom-shadow md:px-10 mb-8">
             <div className="flex items-center justify-center">
-                {/* <button className="p-2">
-                    <ChevronLeftIcon className="h-6 w-6 text-gray-500" />
-                </button> */}
-
-                <div className="flex overflow-x-scroll hide-scrollbar  p-2 items-center gap-8">
-
-                    <Link href="/all" shallow={true} >
-                        <div className="flex flex-col items-center ">
-                            <div className="flex items-center dots-wrapper">
-                                <span className="dot"></span>
-                                <span className="dot"></span>
-                                <span className="dot"></span>
-                            </div>
-                            <span className='text-sm'>Wszystko</span>
-                        </div>
-                    </Link>
-
-                    <Link href="/paintball" shallow={true} >
-                        <div className="flex flex-col items-center">
-                            <Image
-                                src="/icons/paintball.svg"
-                                alt="aim"
-                                width={50}
-                                height={50}
-                            />
-                            <span className='text-sm'>Paintball</span>
-                        </div>
-                    </Link>
-
-
-                    <Link href="/quady" shallow={true}>
-                        <div className="flex flex-col items-center">
-                            <Image
-                                src="/icons/quady.svg"
-                                alt="aim"
-                                width={50}
-                                height={50}
-                            />
-                            <span className='text-sm'>Quady</span>
-                        </div>
-                    </Link>
-
-                    <Link href="/gokarty" shallow={true}>
-                        <div className="flex flex-col items-center">
-                            <Image
-                                src="/icons/gokarty.svg"
-                                alt="gokart"
-                                width={50}
-                                height={50}
-                            />
-                            <span className='text-sm'>Gokarty</span>
-                        </div>
-                    </Link>
+                <div className="flex hide-scrollbar p-2 items-center gap-8">
+                    <NavItem href="/all" label="Wszystko" />
+                    <NavItem href="/paintball" src="/icons/paintball.svg" alt="Paintball" label="Paintball" />
+                    <NavItem href="/quady" src="/icons/quady.svg" alt="Quady" label="Quady" />
+                    <NavItem href="/gokarty" src="/icons/gokarty.svg" alt="Gokarty" label="Gokarty" />
                 </div>
             </div>
         </div>

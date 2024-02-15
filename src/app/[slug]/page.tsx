@@ -8,15 +8,16 @@ import Navigation from "@/components/Navigation/Navigation"
 import BgGlassmorphism from "@/components/BgGlassmorphism"
 
 
+const API_URL = process.env.DATABASE_SERVER_ADDRESS;
 
 async function getData({ params }: { params: { slug: string } }) {
     let url;
 
     if (params.slug === "all") {
-        url = `http://localhost:3001/venue/all`;
+        url = `${API_URL}/venue/all`;
     } else {
         const categoryName = params.slug;
-        url = `http://localhost:3001/venue/category/${categoryName}`;
+        url = `${API_URL}/venue/category/${categoryName}`;
     }
 
     const res = await fetch(url);
@@ -38,7 +39,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
                     <div className="relative flex min-h-screen">
                         <BgGlassmorphism />
                         {/* CARDSSSS */}
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-5 2xl:gap-x-6 gap-y-8 min-h-screen w-full xl:w-[50%] 2xl:w-[50%] max-w-[977px] flex-shrink-0 xl:pr-8">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-5 gap-y-4 min-h-screen w-full xl:w-[50%] 2xl:w-[50%] max-w-[977px] flex-shrink-0">
                             {venueWithPhotos.map((item: {
                                 city: string;
                                 name: string;
@@ -57,7 +58,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
                             ))}
                         </div>
 
-                        <div className="fixed top-48 right-0">
+                        <div className="fixed top-48 right-0 mt-3">
                             <MapFromGoogle paintballPlaces={venueWithPhotos} />
                         </div>
 
