@@ -12,13 +12,13 @@ Formularz dodawania obiektu
  1. Nawigacja do formularza lub progress bar ostatni przycisk dodaj obiekt 
  2. Male ikonki jakaś karta z elementem do wyboru, sprawdzic na airbnb 
  3. Token wygasa przez co nie można przejść dalej? sciagnac zabezpiecznie z session uzywac globalnie 
- 4. zapisanie danych do bazy (nie zapisuje lokalizacji )
+ 4. zapisanie danych do bazy (nie zapisuje lokalizacji)
+ 5. dodać flagę allDataCorrect, isVisiable, - 1. jesli wszystkie pola wymagane są dodane, 1 możliwość ukrycia lub pokazania obiektu z poziomu admina 
+
+--dodwanie oraz edytowanie zdjęć powinno odbywać się tylko i wyłacznie na zdjęciach danego użytkownika 
+trzeba zrobic jakis sprawdzenie na backendzie i przy każdej wyświetlanej stronie czy uzytkownik ma dostep do zasobu 
 
 
-Logowanie za pomoca googla, facebooka 
-- strona do logowania za pomoca google fb itd powinna byc na naszej stronie przynajmniej powinno tak wygladac 
-
-LOOOOOGOOOO
 
 -SEKCJA O NAS 
 -Fotter 

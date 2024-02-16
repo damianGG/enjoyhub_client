@@ -46,7 +46,7 @@ const PageSignUp: FC<PageLoginProps> = ({ }) => {
                     </div>
                     {/* OR */}
                     <div className="relative text-center">
-                        <span className="relative z-10 inline-block px-4 font-medium text-sm bg-white dark:text-neutral-400 ">
+                        <span className="relative z-10 inline-block px-4 font-medium text-sm bg-white  ">
                             lub
                         </span>
                         <div className="absolute left-0 w-full top-1/2 transform -translate-y-1/2 border border-neutral-100 "></div>

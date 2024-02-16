@@ -4,7 +4,7 @@ import { NavItem } from './NavItem';
 
 function Navigation() {
     return (
-        <div className="flex justify-center sticky top-20 z-2 bg-white bottom-shadow md:px-10 mb-8">
+        <div className="flex justify-center sticky top-12 z-2 bg-white bottom-shadow md:px-10 mb-8">
             <div className="flex items-center justify-center">
                 <div className="flex hide-scrollbar p-2 items-center gap-8">
                     <NavItem href="/all" label="Wszystko" />

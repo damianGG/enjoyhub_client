@@ -9,7 +9,7 @@ export interface HeadingProps extends HTMLAttributes<HTMLHeadingElement> {
 const Heading: React.FC<HeadingProps> = ({
   children,
   desc = "Discover the most outstanding articles in all topics of life. ",
-  className = "mb-10 text-neutral-900 dark:text-neutral-50",
+  className = "mb-10 text-neutral-900 ",
   isCenter = false,
   ...args
 }) => {
@@ -24,7 +24,7 @@ const Heading: React.FC<HeadingProps> = ({
           {children || `Section Heading`}
         </h2>
         {desc && (
-          <span className="block mt-2 md:mt-3 font-normal text-base sm:text-lg text-neutral-500 dark:text-neutral-400">
+          <span className="block mt-2 md:mt-3 font-normal text-base sm:text-lg text-neutral-500 ">
             {desc}
           </span>
         )}

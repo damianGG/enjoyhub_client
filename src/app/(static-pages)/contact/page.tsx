@@ -27,7 +27,7 @@ const PageContact: FC<PageContactProps> = ({ }) => {
   return (
     <div className={`nc-PageContact overflow-hidden`}>
       <div className="mb-24 lg:mb-32">
-        <h2 className="my-16 sm:my-20 flex items-center text-3xl leading-[115%] md:text-5xl md:leading-[115%] font-semibold text-neutral-900 dark:text-neutral-100 justify-center">
+        <h2 className="my-16 sm:my-20 flex items-center text-3xl leading-[115%] md:text-5xl md:leading-[115%] font-semibold text-neutral-900  justify-center">
           Kontakt
         </h2>
         <div className="container max-w-7xl mx-auto">
@@ -35,16 +35,16 @@ const PageContact: FC<PageContactProps> = ({ }) => {
             <div className="max-w-sm space-y-8">
               {info.map((item, index) => (
                 <div key={index}>
-                  <h3 className="uppercase font-semibold text-sm dark:text-neutral-200 tracking-wider">
+                  <h3 className="uppercase font-semibold text-sm  tracking-wider">
                     {item.title}
                   </h3>
-                  <span className="block mt-2 text-neutral-500 dark:text-neutral-400">
+                  <span className="block mt-2 text-neutral-500 ">
                     {item.desc}
                   </span>
                 </div>
               ))}
               <div>
-                <h3 className="uppercase font-semibold text-sm dark:text-neutral-200 tracking-wider">
+                <h3 className="uppercase font-semibold text-sm  tracking-wider">
                   🌏 SOCIALS
                 </h3>
                 <SocialsList className="mt-2" />

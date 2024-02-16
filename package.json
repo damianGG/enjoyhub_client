@@ -38,6 +38,7 @@
     "react-slick": "^0.29.0",
     "react-swipeable": "^7.0.1",
     "sass": "^1.70.0",
+    "sharp": "^0.33.2",
     "styled-components": "^6.0.8",
     "typescript": "5.2.2"
   },

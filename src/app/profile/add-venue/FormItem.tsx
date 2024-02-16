@@ -20,7 +20,7 @@ const FormItem: FC<FormItemProps> = ({
       {label && <Label>{label}</Label>}
       <div className="mt-1">{children}</div>
       {desc && (
-        <span className="block mt-3 text-xs text-neutral-500 dark:text-neutral-400 ">
+        <span className="block mt-3 text-xs text-neutral-500  ">
           {desc}
         </span>
       )}

@@ -9,17 +9,17 @@ import Link from 'next/link';
 
 function Header() {
     return (
-        <header className="flex justify-between sticky top-0 z-5 bg-white p-5 md:px-10">
+        <header className="flex justify-between sticky top-0 z-5 bg-white pl-5 pr-5 pt-2  md:px-10">
 
             {/* Lewa strona */}
             {/* Logo */}
             <div className="flex items-center">
-                <div className="relative w-24 h-10 cursor-pointer my-auto">
+                <div className="relative w-32 h-10 cursor-pointer my-auto">
                     <Link href={"/all"}>
                         <Image
-                            src="/logo.png"
+                            src="/logo2.png"
                             layout="fill"
-                            objectFit="contain"
+                            objectFit="cover"
                             objectPosition="left" alt={'Logo'} />
                     </Link>
                 </div>

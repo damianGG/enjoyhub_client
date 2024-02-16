@@ -27,11 +27,11 @@ const PageAddListing4: FC<PageAddListing4Props> = () => {
         <>
             <div>
                 <h2 className="text-2xl font-semibold">Kontakt i socialmedia</h2>
-                <span className="block mt-2 text-neutral-500 dark:text-neutral-400">
+                <span className="block mt-2 text-neutral-500 ">
                     {`Dodaj podstaowy kontakt tak aby kliencie mogli w łatwy sposób mogli się z Tobą skontaktować`}
                 </span>
             </div>
-            <div className="w-14 border-b border-neutral-200 dark:border-neutral-700"></div>
+            <div className="w-14 border-b border-neutral-200 "></div>
             <form onSubmit={handleSubmit(onHandleFormSubmit)}>
                 <div className="space-y-8">
                     <FormItem label="numer telefonu">

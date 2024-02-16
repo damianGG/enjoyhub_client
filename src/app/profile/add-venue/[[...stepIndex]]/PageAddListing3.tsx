@@ -105,20 +105,20 @@ const PageAddListing3: FC<PageAddListing3Props> = () => {
     <>
       <div>
         <h2 className="text-2xl font-semibold">Zdjęcia</h2>
-        <span className="block mt-2 text-neutral-500 dark:text-neutral-400">
+        <span className="block mt-2 text-neutral-500 ">
           Kilka pięknych zdjęć przez które klienci pokochają Twoje miejsce.
         </span>
       </div>
       <form className="space-y-6" onSubmit={handleSubmit(onHandleFormSubmit)}>
 
-        <div className="w-14 border-b border-neutral-200 dark:border-neutral-700"></div>
+        <div className="w-14 border-b border-neutral-200 "></div>
         {/* FORM */}
         <div className="space-y-8">
           {/* ----------------- */}
           <div>
 
             <div className="mt-5 ">
-              <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-neutral-300 dark:border-neutral-6000 border-dashed rounded-md">
+              <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-neutral-300  border-dashed rounded-md">
                 <div className="space-y-1 text-center">
                   <svg
                     className="mx-auto h-12 w-12 text-neutral-400"
@@ -134,7 +134,7 @@ const PageAddListing3: FC<PageAddListing3Props> = () => {
                       strokeLinejoin="round"
                     ></path>
                   </svg>
-                  <div className="flex text-sm text-neutral-6000 dark:text-neutral-300">
+                  <div className="flex text-sm text-neutral-6000 ">
                     <label
                       htmlFor="file-upload-2"
                       className="relative cursor-pointer  rounded-md font-medium text-primary-6000 hover:text-primary-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-primary-500"
@@ -152,7 +152,7 @@ const PageAddListing3: FC<PageAddListing3Props> = () => {
                     </label>
                     <p className="pl-1">albo przeciągnij i upuść</p>
                   </div>
-                  <p className="text-xs text-neutral-500 dark:text-neutral-400">
+                  <p className="text-xs text-neutral-500 ">
                     PNG, JPG do 10MB
                   </p>
                 </div>

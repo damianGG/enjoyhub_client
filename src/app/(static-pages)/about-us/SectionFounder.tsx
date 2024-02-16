@@ -40,10 +40,10 @@ const SectionFounder = () => {
               />
             </div>
 
-            <h3 className="text-lg font-semibold text-neutral-900 mt-4 md:text-xl dark:text-neutral-200">
+            <h3 className="text-lg font-semibold text-neutral-900 mt-4 md:text-xl ">
               {item.name}
             </h3>
-            <span className="block text-sm text-neutral-500 sm:text-base dark:text-neutral-400">
+            <span className="block text-sm text-neutral-500 sm:text-base ">
               {item.job}
             </span>
           </div>

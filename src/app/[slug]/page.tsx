@@ -58,7 +58,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
                             ))}
                         </div>
 
-                        <div className="fixed top-48 right-0 mt-3">
+                        <div className="fixed top-40 right-0 mt-3">
                             <MapFromGoogle paintballPlaces={venueWithPhotos} />
                         </div>
 

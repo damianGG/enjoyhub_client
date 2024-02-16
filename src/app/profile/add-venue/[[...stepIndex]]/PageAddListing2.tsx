@@ -73,12 +73,12 @@ const PageAddListing2: FC<PageAddListing2Props> = () => {
     <>
       <div>
         <h2 className="text-2xl font-semibold">Lokalizacja</h2>
-        <span className="block mt-2 text-neutral-500 dark:text-neutral-400">
+        <span className="block mt-2 text-neutral-500 ">
           uzupełnij pola z lokalizacją obiektu aby nikt nie miał problemu Cię znaleźć
         </span>
 
       </div>
-      <div className="w-14 border-b border-neutral-200 dark:border-neutral-700"></div>
+      <div className="w-14 border-b border-neutral-200 "></div>
       <form className="space-y-6" onSubmit={handleSubmit(onHandleFormSubmit)}>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-5">

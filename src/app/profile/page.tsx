@@ -142,7 +142,7 @@ function ProfilePage() {
                     <div>
                         <h2 className="text-3xl font-semibold">Twoje konto</h2>
                     </div>
-                    <div className="w-14 border-b border-neutral-200 dark:border-neutral-700 mt-10 mb-4"></div>
+                    <div className="w-14 border-b border-neutral-200  mt-10 mb-4"></div>
                     <div className="lg:sticky lg:top-24">
                         {userData && <UserProfileForm userData={userData} onSubmit={handleFormSubmit} />}
                     </div>
@@ -152,7 +152,7 @@ function ProfilePage() {
                     <div>
                         <h2 className="text-3xl font-semibold">Twoje obiekty</h2>
                     </div>
-                    <div className="w-14 border-b border-neutral-200 dark:border-neutral-700"></div>
+                    <div className="w-14 border-b border-neutral-200 "></div>
                     <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-x-5 2xl:gap-x-6 gap-y-8 min-h-screen w-full xl:w-[50%] 2xl:w-[50%] max-w-[1184px] flex-shrink-0 xl:pr-8'>
                         <AddVenueCard />
 

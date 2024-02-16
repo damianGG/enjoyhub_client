@@ -74,7 +74,7 @@ const PageAddListing1: FC<PageAddListing1Props> = ({ }) => {
   return (
     <>
       <h2 className="text-2xl font-semibold">Kliknij na obiektu który chcesz dodać</h2>
-      <div className="w-14 border-b border-neutral-200 dark:border-neutral-700"></div>
+      <div className="w-14 border-b border-neutral-200 "></div>
       <form onSubmit={handleSubmit(onHandleFormSubmit)}>
         <Controller
           name="categoryId"
@@ -82,7 +82,7 @@ const PageAddListing1: FC<PageAddListing1Props> = ({ }) => {
           render={({ field }) => (
             <div className="flex gap-6 flex-wrap justify-between">
               {options.map((option) => (
-                <div key={option.id} className="w-30 flex-col p-4 bg-neutral-50 dark:bg-neutral-800 rounded-2xl dark:border-neutral-800 flex "
+                <div key={option.id} className="w-30 flex-col p-4 bg-neutral-50  rounded-2xl  flex "
                   style={{
                     cursor: 'pointer',
                     padding: '25px',
