@@ -8,7 +8,7 @@ import Navigation from "@/components/Navigation/Navigation"
 import BgGlassmorphism from "@/components/BgGlassmorphism"
 
 
-const API_URL = process.env.DATABASE_SERVER_ADDRESS;
+const API_URL = process.env.BACKEND_ADDRESS;
 
 async function getData({ params }: { params: { slug: string } }) {
     let url;

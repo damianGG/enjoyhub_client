@@ -5,7 +5,6 @@ import Map from "@/components/Map"
 import MapFromGoogleVenue from "@/components/MapFromGoogleVenue";
 import InstagramIcon from "/instagram.webp"
 import MainVenueGallery from "./MainVenueGallery";
-import { env } from "process";
 import Link from "next/link";
 import SideBox from "./SideBox";
 
@@ -16,8 +15,8 @@ export default async function Page({ params }: { params: { venueName: string } }
 
     // Make both fetch calls simultaneously
     const [res, resPhotos] = await Promise.all([
-        fetch(`http://localhost:3001/venue/${id}`),
-        fetch(`http://localhost:3001/venue/${id}/photos`)
+        fetch(`${process.env.BACKEND_ADDRESS}/venue/${id}`),
+        fetch(`${process.env.BACKEND_ADDRESS}/venue/${id}/photos`)
     ]);
 
     if (!res.ok) {
@@ -122,7 +121,7 @@ export default async function Page({ params }: { params: { venueName: string } }
                         </div>
                     </div>
                 </div>
-                
+
                 <SideBox />
             </main>
         )

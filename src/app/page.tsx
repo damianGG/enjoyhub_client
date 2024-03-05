@@ -1,12 +1,6 @@
 
-import Navigation from '@/components/Navigation/Navigation';
-import React, { useState } from 'react';
-const Register: React.FC = () => {
+import { redirect } from 'next/navigation'
 
-  return (
-    <Navigation />
-
-  );
-};
-
-export default Register;
+export default async function Page() {
+  redirect('/all')
+}
