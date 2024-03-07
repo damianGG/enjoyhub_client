@@ -27,7 +27,7 @@ const RegistrationForm = (): React.ReactElement | null => {
     const [emailExists, setEmailExists] = useState<string | null>(null);;
 
     const registerUser = async (registrationData: Inputs) => {
-        const response = await fetch('http://localhost:3000/users', {
+        const response = await fetch(`${process.env.BACKEND_ADDRESS}/users`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -49,7 +49,7 @@ const RegistrationForm = (): React.ReactElement | null => {
         if (!emailRegex.test(email)) {
             return;  // Zwróć nic, jeśli e-mail jest nieprawidłowy
         }
-        const response = await fetch(`http://localhost:3000/users/${email}`, {
+        const response = await fetch(`${process.env.BACKEND_ADDRESS}/users/${email}`, {
             method: 'POST',
         });
 

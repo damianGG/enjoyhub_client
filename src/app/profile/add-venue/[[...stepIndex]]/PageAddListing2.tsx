@@ -52,7 +52,7 @@ const PageAddListing2: FC<PageAddListing2Props> = () => {
 
   const updateData = async (updatedUserData: TFormValues) => {
     try {
-      const response = await fetch(`http://localhost:3001/venue/${formData.venueId}`, {
+      const response = await fetch(`${process.env.BACKEND_ADDRESS}/venue/${formData.venueId}`, {
         method: 'POST', // lub 'POST', w zależności od API
         headers: {
           'Content-Type': 'application/json',

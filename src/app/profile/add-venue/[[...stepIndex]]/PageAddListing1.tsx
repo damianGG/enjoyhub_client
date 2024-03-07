@@ -37,7 +37,7 @@ const PageAddListing1: FC<PageAddListing1Props> = ({ }) => {
     console.log('Session:', session);
     if (session && session.accessToken) {
       try {
-        const response = await fetch('http://localhost:3001/venue', {
+        const response = await fetch(`${process.env.BACKEND_ADDRESS}/venue`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

@@ -44,8 +44,8 @@ export default function Page({
     const fetchData = async () => {
         try {
             const [res, resPhotos] = await Promise.all([
-                fetch(`http://localhost:3001/venue/${venueID}`),
-                fetch(`http://localhost:3001/venue/${venueID}/photos`)
+                fetch(`${process.env.BACKEND_ADDRESS}/venue/${venueID}`),
+                fetch(`${process.env.BACKEND_ADDRESS}/venue/${venueID}/photos`)
             ]);
 
             if (!res.ok || !resPhotos.ok) {
@@ -72,7 +72,7 @@ export default function Page({
 
     const updateData = async (updatedUserData: UserData) => {
         try {
-            const response = await fetch(`http://localhost:3001/venue/${venueID}`, {
+            const response = await fetch(`${process.env.BACKEND_ADDRESS}/venue/${venueID}`, {
                 method: 'POST', // lub 'POST', w zależności od API
                 headers: {
                     'Content-Type': 'application/json',
@@ -97,7 +97,7 @@ export default function Page({
 
     const onLocationChange = async (updatedUserData: UserData) => {
         try {
-            const response = await fetch(`http://localhost:3001/venue/${venueID}`, {
+            const response = await fetch(`${process.env.BACKEND_ADDRESS}/venue/${venueID}`, {
                 method: 'POST', // lub 'POST', w zależności od API
                 headers: {
                     'Content-Type': 'application/json',

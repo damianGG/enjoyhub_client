@@ -53,7 +53,7 @@ const ImageManager: React.FC<ImageManagerProps> = ({ photos, onPhotosChange }) =
         setLoading(true);
 
         try {
-            const response = await fetch('http://localhost:3001/image/upload', {
+            const response = await fetch(`${process.env.BACKEND_ADDRESS}/image/upload`, {
                 method: 'POST',
                 body: formDataToSend,
             });
@@ -74,7 +74,7 @@ const ImageManager: React.FC<ImageManagerProps> = ({ photos, onPhotosChange }) =
             const lastPart = parts[parts.length - 1];
             const publicId = lastPart.split('.')[0];
             const encodedPublicId = encodeURIComponent(publicId);
-            const url = `http://localhost:3001/images?publicId=${encodedPublicId}`;
+            const url = `${process.env.BACKEND_ADDRESS}/images?publicId=${encodedPublicId}`;
 
             await fetch(url, { method: 'DELETE' });
             // fetchImages(); // Ponownie pobierz obrazy

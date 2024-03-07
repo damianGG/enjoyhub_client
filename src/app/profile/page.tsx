@@ -52,7 +52,7 @@ function ProfilePage() {
                 signIn();
             }
             else {
-                fetch(`http://localhost:3001/users/${session?.user?.userId}`, {
+                fetch(`https://enjoyhubserver-production.up.railway.app/users/${session?.user?.userId}`, {
                     method: 'PATCH',
                     headers: {
                         'Content-Type': 'application/json',
@@ -89,7 +89,7 @@ function ProfilePage() {
                 signIn();
             }
             else {
-                fetch(`http://localhost:3001/venue/${session?.user?.userId}/venues`, {
+                fetch(`https://enjoyhubserver-production.up.railway.app/venue/${session?.user?.userId}/venues`, {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",
@@ -111,7 +111,7 @@ function ProfilePage() {
                     });
 
                 // Zapytanie do endpointa users
-                fetch(`http://localhost:3001/users/${session?.user?.userId}`, {
+                fetch(`https://enjoyhubserver-production.up.railway.app/users/${session?.user?.userId}`, {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",

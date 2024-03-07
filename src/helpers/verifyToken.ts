@@ -1,5 +1,5 @@
 export async function verifyToken(token: any) {
-    const response = await fetch('http://localhost:3001/auth/verify', {
+    const response = await fetch(`${process.env.BACKEND_ADDRESS}/auth/verify`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

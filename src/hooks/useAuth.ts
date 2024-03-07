@@ -11,7 +11,7 @@ import { useRouter } from 'next/navigation';
   useEffect(() => {
     const verifyToken = async () => {
       try {
-        const response = await fetch('http://localhost:3001/verify-token', {
+        const response = await fetch(`${process.env.BACKEND_ADDRESS}/verify-token`, {
           headers: {
             'Authorization': `${localStorage.getItem('token')}`,
           }

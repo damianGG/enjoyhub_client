@@ -27,7 +27,7 @@ export const authOptions:NextAuthOptions= {
           if(credentials!== undefined){
             const { email, password } = credentials;
             try {
-              const res = await fetch("http://localhost:3001/auth/login", {
+              const res = await fetch(`${process.env.BACKEND_ADDRESS}/auth/login`, {
                 method: "POST",
                 body: JSON.stringify({
                   email,
@@ -56,7 +56,7 @@ export const authOptions:NextAuthOptions= {
       async signIn({ user, account, profile }) {
         if (account?.provider === 'google') {
             // Wyślij żądanie do swojego API, aby dodać/aktualizować użytkownika
-            const res = await fetch("http://localhost:3001/users/register/via-provider", {
+            const res = await fetch(`${process.env.BACKEND_ADDRESS}/users/register/via-provider`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
