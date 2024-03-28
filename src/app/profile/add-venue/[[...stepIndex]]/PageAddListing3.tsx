@@ -33,7 +33,7 @@ const PageAddListing3: FC<PageAddListing3Props> = () => {
 
     try {
       setLoading(true);
-      const response = await fetch(`${process.env.BACKEND_ADDRESS}/images/${formData.venueId}`);
+      const response = await fetch(`https://enjoyhubserver-production.up.railway.app/images/${formData.venueId}`);
       // opcjonalnie pobieramy zdjęcia z z bazy danych a nie z cloudinary 
       // wymagana edycji usuwania zdjęć 
       // const response = await fetch(`http://localhost:3001/images/${formData.venueId}`);
@@ -65,7 +65,7 @@ const PageAddListing3: FC<PageAddListing3Props> = () => {
     setLoading(true);
 
     try {
-      const response = await fetch(`${process.env.BACKEND_ADDRESS}/image/upload`, {
+      const response = await fetch(`https://enjoyhubserver-production.up.railway.app/image/upload`, {
         method: 'POST',
         body: formDataToSend,
       });
@@ -91,7 +91,7 @@ const PageAddListing3: FC<PageAddListing3Props> = () => {
     try {
       setLoading(true);
       const encodedPublicId = encodeURIComponent(publicId);
-      const url = `${process.env.BACKEND_ADDRESS}/images?publicId=${encodedPublicId}`;
+      const url = `https://enjoyhubserver-production.up.railway.app/images?publicId=${encodedPublicId}`;
       await fetch(url, { method: 'DELETE' });
       fetchImages(); // Ponownie pobierz aktualną listę zdjęć
     } catch (error) {

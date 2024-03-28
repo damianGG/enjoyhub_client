@@ -52,7 +52,7 @@ const PageAddListing2: FC<PageAddListing2Props> = () => {
 
   const updateData = async (updatedUserData: TFormValues) => {
     try {
-      const response = await fetch(`${process.env.BACKEND_ADDRESS}/venue/${formData.venueId}`, {
+      const response = await fetch(`https://enjoyhubserver-production.up.railway.app/venue/${formData.venueId}`, {
         method: 'POST', // lub 'POST', w zależności od API
         headers: {
           'Content-Type': 'application/json',

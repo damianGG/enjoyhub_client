@@ -45,40 +45,41 @@ function ProfilePage() {
 
     const handleFormSubmit = (data: UserData) => {
 
+        JSON.stringify(data),
+            getSession().then(session => {
+                console.log(session);
+                if (!session) {
+                    signIn();
+                }
+                else {
 
-        getSession().then(session => {
-            console.log(session);
-            if (!session) {
-                signIn();
-            }
-            else {
-                fetch(`https://enjoyhubserver-production.up.railway.app/users/${session?.user?.userId}`, {
-                    method: 'PATCH',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        "Authorization": `Bearer ${session.accessToken}`
-                    },
-                    body: JSON.stringify(data),
-                })
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error('Nie udało się zaktualizować danych użytkownika');
-                        }
-                        return response.json();
+                    fetch(`https://enjoyhubserver-production.up.railway.app/users/${session?.user?.userId}`, {
+                        method: 'PATCH',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            "Authorization": `Bearer ${session.accessToken}`
+                        },
+                        body: JSON.stringify(data),
                     })
-                    .then(updatedUserData => {
-                        setSnackbarMessage('Dane użytkownika zostały zaktualizowane!');
-                        setSnackbarOpen(true);
-                        // Możesz tutaj zaktualizować stan lub wykonać inne działania po pomyślnym zaktualizowaniu
-                    })
-                    .catch(error => {
-                        setSnackbarMessage('Wystąpił błąd podczas aktualizacji danych użytkownika.');
-                        setSnackbarOpen(true);
-                        console.error('Błąd:', error);
-                        // Obsługa błędów
-                    });
-            }
-        })
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error('Nie udało się zaktualizować danych użytkownika');
+                            }
+                            return response.json();
+                        })
+                        .then(updatedUserData => {
+                            setSnackbarMessage('Dane użytkownika zostały zaktualizowane!');
+                            setSnackbarOpen(true);
+                            // Możesz tutaj zaktualizować stan lub wykonać inne działania po pomyślnym zaktualizowaniu
+                        })
+                        .catch(error => {
+                            setSnackbarMessage('Wystąpił błąd podczas aktualizacji danych użytkownika.');
+                            setSnackbarOpen(true);
+                            console.error('Błąd:', error);
+                            // Obsługa błędów
+                        });
+                }
+            })
     };
 
     useEffect(() => {

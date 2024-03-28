@@ -35,9 +35,10 @@ const PageAddListing1: FC<PageAddListing1Props> = ({ }) => {
   const onSubmittoSendForm = async (data: any) => {
     const session = await getSession();
     console.log('Session:', session);
+    console.log(JSON.stringify(data))
     if (session && session.accessToken) {
       try {
-        const response = await fetch(`${process.env.BACKEND_ADDRESS}/venue`, {
+        const response = await fetch(`https://enjoyhubserver-production.up.railway.app/venue`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
